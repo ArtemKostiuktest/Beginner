@@ -20,11 +20,11 @@ abstract public class AbstractBaseTest {
         driver.manage().window().maximize();
     }
 
-//    @AfterMethod
-//    public void closeBrowser() {
-//        log.info("<<<=== Teardown");
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void closeBrowser() {
+        log.info("<<<=== Teardown");
+        driver.quit();
+    }
 
     public static void sleep(int seconds) {
         try {
