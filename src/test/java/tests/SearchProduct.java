@@ -9,22 +9,21 @@ import pages.NamePage;
 import java.util.List;
 
 public class SearchProduct extends AbstractBaseTest {
- private final String nameOfSearchProduct = "Classic";
+    private final String nameOfSearchProduct = "Classic";
+    List<String> listOfNames;
 
-  @Test
-  public void searchProductByName(){
-      HomePage homePage = new HomePage(driver);
-     SoftAssertions softAssert = new SoftAssertions();
-      homePage.fillBaseSearchField(nameOfSearchProduct);
+    @Test
+    public void searchProductByName() {
+        HomePage homePage = new HomePage(driver);
+        SoftAssertions softAssert = new SoftAssertions();
+        homePage.fillBaseSearchField(nameOfSearchProduct);
 
         NamePage namePage = new NamePage(driver);
+        listOfNames = namePage.getProductsNames();
+        for (String name : listOfNames) {
+            softAssert.assertThat(name).contains(nameOfSearchProduct);
+        }
 
-     List<String> listOfNames;
-     listOfNames = namePage.getProductsNames();
-     for(String name : listOfNames) {
-         softAssert.assertThat(name).contains(nameOfSearchProduct);
-     }
-
-     softAssert.assertAll();
- }
+        softAssert.assertAll();
+    }
 }

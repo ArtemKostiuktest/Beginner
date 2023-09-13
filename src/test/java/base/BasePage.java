@@ -47,6 +47,7 @@ public class BasePage extends Assert {
     public void waitUntilNumberOfTabToBe(int tabNumber) {
         wait.until(ExpectedConditions.numberOfWindowsToBe(tabNumber));
     }
+
     protected List<WebElement> waitPresenceOfElementsLocated(String locator) {
         try {
             return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locator)));

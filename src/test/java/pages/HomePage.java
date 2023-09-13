@@ -11,6 +11,7 @@ import java.util.List;
 public class HomePage extends BasePage {
 
     protected static final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
+
     protected static final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
     public HomePage(WebDriver driver) {
         super(driver);
