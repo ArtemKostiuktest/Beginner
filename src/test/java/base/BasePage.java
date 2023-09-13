@@ -1,20 +1,18 @@
 package base;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class BasePage {
+public class BasePage extends Assert {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
@@ -39,7 +37,7 @@ public class BasePage {
 
     protected List<WebElement> waitUntilElementsToBeClickable(String locator) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
-        return driver.findElements(By.xpath(locator));
+        return driver.findElements(By.xpath(    locator));
     }
 
     public void waitUntilUrlContainsText(String urlPath) {
@@ -49,6 +47,15 @@ public class BasePage {
     public void waitUntilNumberOfTabToBe(int tabNumber) {
         wait.until(ExpectedConditions.numberOfWindowsToBe(tabNumber));
     }
+    protected List<WebElement> waitPresenceOfElementsLocated(String locator) {
+        try {
+            return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locator)));
+        } catch (WebDriverException e) {
+            fail("No presence elements: " + locator);
+            return null;
+        }
+    }
+
 
     public void goToTab(int tabNumber) {
         waitUntilNumberOfTabToBe(tabNumber);
@@ -82,4 +89,6 @@ public class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0," + pixels + ")", "");
     }
+
+
 }

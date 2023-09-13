@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.HomePage;
 
 @Slf4j
 abstract public class AbstractBaseTest {
@@ -18,13 +19,16 @@ abstract public class AbstractBaseTest {
         driver = new ChromeDriver();
         driver.get(BASE_URL);
         driver.manage().window().maximize();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAllowAllCookie();
     }
 
-    @AfterMethod
-    public void closeBrowser() {
-//        log.info("<<<=== Teardown");
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void closeBrowser() {
+////        log.info("<<<=== Teardown");
+//        driver.quit();
+//        sleep(10);
+//    }
 
     public static void sleep(int seconds) {
         try {
