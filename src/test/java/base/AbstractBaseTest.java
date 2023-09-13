@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.HomePage;
 
 @Slf4j
 abstract public class AbstractBaseTest {
@@ -18,6 +19,8 @@ abstract public class AbstractBaseTest {
         driver = new ChromeDriver();
         driver.get(BASE_URL);
         driver.manage().window().maximize();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAllowAllCookie();
     }
 
     @AfterMethod
