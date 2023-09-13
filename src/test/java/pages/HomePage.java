@@ -14,10 +14,14 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    static final String WOMEN_BUTTON = "//a[@data-navigation='women']";
+    protected final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
     static final String MEN_BUTTON = "//a[@data-navigation='men']";
     static final String MEN_SHOES_VIEW_ALL = "//a[@data-navigation='MEN-SHOES:MEN-SHOES:men']";
     static final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
+
+    public void fillBaseSearchField(String searchField) {
+        waitUntilElementToBeClickable(BASE_SEARCH_FIELD).sendKeys(searchField + Keys.ENTER);
+    }
 
     public WebElement menCategoryElement(){
         return waitUntilVisibilityOfElement(MEN_BUTTON);
