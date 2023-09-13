@@ -2,6 +2,7 @@ package tests;
 
 import base.AbstractBaseTest;
 import org.assertj.core.api.SoftAssertions;
+import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.NamePage;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class SearchProduct extends AbstractBaseTest {
  private final String nameOfSearchProduct = "Classic";
 
- @org.testng.annotations.Test
+  @Test
   public void searchProductByName(){
       HomePage homePage = new HomePage(driver);
      SoftAssertions softAssert = new SoftAssertions();

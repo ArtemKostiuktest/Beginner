@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends BasePage {
+
+    protected static final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
+    protected static final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
     public HomePage(WebDriver driver) {
         super(driver);
     }
-    static final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
-    static final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
+
     public void fillBaseSearchField(String searchField){
         waitUntilElementToBeClickable(BASE_SEARCH_FIELD ).sendKeys(searchField + Keys.ENTER);
     }

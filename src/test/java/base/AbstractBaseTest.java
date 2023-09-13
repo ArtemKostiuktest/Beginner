@@ -26,7 +26,6 @@ abstract public class AbstractBaseTest {
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
-        sleep(10);
     }
 
     public static void sleep(int seconds) {
