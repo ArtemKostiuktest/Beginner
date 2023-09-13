@@ -22,9 +22,4 @@ public class HomePage extends BasePage {
         waitUntilElementToBeClickable(ALLOW_ALL_COOKIE_BUTTON).click();
     }
 
-
-
-
-
-
 }

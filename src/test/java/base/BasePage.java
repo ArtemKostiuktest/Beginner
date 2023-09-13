@@ -56,7 +56,6 @@ public class BasePage extends Assert {
         }
     }
 
-
     public void goToTab(int tabNumber) {
         waitUntilNumberOfTabToBe(tabNumber);
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
@@ -89,6 +88,4 @@ public class BasePage extends Assert {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0," + pixels + ")", "");
     }
-
-
 }

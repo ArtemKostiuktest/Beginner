@@ -15,18 +15,6 @@ public class NamePage extends BasePage {
         super(driver);
     }
 
-//    public  List<String> getProductsNames() {
-//     List<String> productsNames = new ArrayList<>();
-//        List<WebElement> productsNameElement = waitPresenceOfElementsLocated("//span[@class ='product-block-name-wrapper']");
-//        for(WebElement element : productsNameElement){
-//            String productsName = element.getText();
-//            productsNames.add(productsName);
-//        }
-//
-//        return productsNames;
-//    }
-
-
     public List<String> getProductsNames() {
         List<String> names = new ArrayList<>();
         List<WebElement> productNameElements = waitPresenceOfElementsLocated("//span[@class ='product-block-name-wrapper']");
@@ -36,6 +24,4 @@ public class NamePage extends BasePage {
         }
         return names;
     }
-
-
 }

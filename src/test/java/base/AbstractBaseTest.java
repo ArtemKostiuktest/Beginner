@@ -23,12 +23,11 @@ abstract public class AbstractBaseTest {
         homePage.clickAllowAllCookie();
     }
 
-//    @AfterMethod
-//    public void closeBrowser() {
-////        log.info("<<<=== Teardown");
-//        driver.quit();
-//        sleep(10);
-//    }
+    @AfterMethod
+    public void closeBrowser() {
+        driver.quit();
+        sleep(10);
+    }
 
     public static void sleep(int seconds) {
         try {
