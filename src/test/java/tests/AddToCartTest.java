@@ -16,9 +16,6 @@ public class AddToCartTest extends AbstractBaseTest {
     public void checkAddToCart() {
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
 
-        HomePage homePage = new HomePage(driver);
-
-        homePage.clickAllowAllCookie();
         shoppingCartPage
                 .clickShopNowButton()
                 .clickOnShoes()
