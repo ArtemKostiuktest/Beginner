@@ -18,20 +18,20 @@ public class AddToCartTest extends AbstractBaseTest {
 
         HomePage homePage = new HomePage(driver);
 
-        homePage
-                .clickCookie();
+        homePage.clickAllowAllCookie();
         shoppingCartPage
                 .clickShopNowButton()
                 .clickOnShoes()
                 .clickOnSelectSizeDropdown()
                 .clickOnSelectSize()
                 .clickOnAddToCard();
+
         current_price = shoppingCartPage.getInfoAboutProductOnHomePage();
-        shoppingCartPage
-                .clickOnProceedToCheckout();
+
+        shoppingCartPage.clickOnProceedToCheckout();
+
         actual_price = shoppingCartPage.getInfoAboutProductOnCard();
 
         Assert.assertEquals(actual_price, current_price);
-
     }
 }
