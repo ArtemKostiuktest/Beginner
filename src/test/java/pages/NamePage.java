@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static utils.Utils.reName;
+import static utils.Utils.getElementText;
 
 public class NamePage extends BasePage {
-    protected final String PRODUCT_TITLE_SPAN = "//span[@class ='product-block-name-wrapper']";
+    protected final String PRODUCT_TITLES_SPAN = "//span[@class ='product-block-name-wrapper']";
+
     public NamePage(WebDriver driver) {
         super(driver);
     }
 
-    public List<String> getProductsNames() {
-        List<String> names = new ArrayList<>();
-        List<WebElement> productNameElements = waitPresenceOfElementsLocated(PRODUCT_TITLE_SPAN);
-        for (WebElement element : productNameElements) {
-            String name = reName(element);
-            names.add(name);
+    public List<String> getTitlesNames() {
+        List<String> titles = new ArrayList<>();
+        List<WebElement> productTitleElements = waitPresenceOfElementsLocated(PRODUCT_TITLES_SPAN);
+        for (WebElement element : productTitleElements) {
+            String title = getElementText(element);
+            titles.add(title);
         }
-        return names;
+        return titles;
     }
 }

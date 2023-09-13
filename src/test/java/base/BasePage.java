@@ -37,7 +37,7 @@ public class BasePage extends Assert {
 
     protected List<WebElement> waitUntilElementsToBeClickable(String locator) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
-        return driver.findElements(By.xpath(    locator));
+        return driver.findElements(By.xpath(locator));
     }
 
     public void waitUntilUrlContainsText(String urlPath) {

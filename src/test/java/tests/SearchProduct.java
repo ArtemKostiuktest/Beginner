@@ -1,6 +1,7 @@
 package tests;
 
 import base.AbstractBaseTest;
+import jdk.jfr.Description;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -12,18 +13,18 @@ public class SearchProduct extends AbstractBaseTest {
     private final String nameOfSearchProduct = "Classic";
     List<String> listOfNames;
 
-    @Test
+    @Test(description = "Product search by name")
     public void searchProductByName() {
         HomePage homePage = new HomePage(driver);
+        NamePage namePage = new NamePage(driver);
         SoftAssertions softAssert = new SoftAssertions();
+
         homePage.fillBaseSearchField(nameOfSearchProduct);
 
-        NamePage namePage = new NamePage(driver);
-        listOfNames = namePage.getProductsNames();
+        listOfNames = namePage.getTitlesNames();
         for (String name : listOfNames) {
             softAssert.assertThat(name).contains(nameOfSearchProduct);
         }
-
         softAssert.assertAll();
     }
 }
