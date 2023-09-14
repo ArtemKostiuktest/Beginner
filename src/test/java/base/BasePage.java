@@ -22,7 +22,7 @@ public class BasePage extends Assert {
         this.wait = new WebDriverWait(driver, Duration.ofMillis(15000));
     }
 
-    public WebElement waitUntilVisibilityOfElement(String locator) {
+    public WebElement waitUntilVisibilityOfElementLocated(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
@@ -55,6 +55,10 @@ public class BasePage extends Assert {
             fail("No presence elements: " + locator);
             return null;
         }
+    }
+
+    protected void waitUntilInvisibilityOfElementLocated(String locator) {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
     public void goToTab(int tabNumber) {
