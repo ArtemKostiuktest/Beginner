@@ -11,15 +11,15 @@ public class ProductPage extends BasePage {
 
     private final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
 
-    public void clickSelectSizeButton() {
+    public void SelectDropdownSizeButton() {
         waitUntilElementToBeClickable(SELECT_SIZE_BUTTON).click();
     }
 
     public String getValueOfSizeAccessibility(String size) {
-        return waitUntilElementToBeClickable(ValueOfSizeAccessibility(size)).getText();
+        return waitUntilElementToBeClickable(valueOfSizeAccessibility(size)).getText();
     }
 
-    private String ValueOfSizeAccessibility(String size) {
+    private String valueOfSizeAccessibility(String size) {
         return "//div[@value='" + size + "']";
     }
 }
