@@ -2,14 +2,15 @@ package tests;
 
 import base.AbstractBaseTest;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
 import pages.BrowseProductsPage;
+import pages.HomePage;
 import pages.ProductPage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.testng.Assert.assertFalse;
 
 public class FiltersTest extends AbstractBaseTest {
 
@@ -20,8 +21,8 @@ public class FiltersTest extends AbstractBaseTest {
 
     @Test(description = "Filtering products by size")
     public void sizeFilterTest() {
-        HomePage homePage = new HomePage(driver);
-        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+        var homePage = new HomePage(driver);
+        var browseProductsPage = new BrowseProductsPage(driver);
 
         homePage.openAllMenShoes();
 
@@ -31,11 +32,11 @@ public class FiltersTest extends AbstractBaseTest {
         checkingEachProductForSizeAvailability(listOfProductsElement);
 
         for (String result : listOfAccessibility) {
-            Assert.assertFalse(result.contains(SIZE_ACCESSIBILITY_TARGET));
+            assertFalse(result.contains(SIZE_ACCESSIBILITY_TARGET));
         }
     }
 
-    public void checkingEachProductForSizeAvailability(List<WebElement> elements) {
+    private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
         for (int i = 1; i <= elements.size(); i++) {
             ProductPage productPage = new ProductPage(driver);
             BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);

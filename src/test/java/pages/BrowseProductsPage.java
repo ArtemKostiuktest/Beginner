@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
+import static java.lang.String.format;
 import static utils.Utils.getElementText;
 
 public class BrowseProductsPage extends BasePage {
@@ -19,7 +19,7 @@ public class BrowseProductsPage extends BasePage {
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
 
     private String mensShoesSize(String size) {
-        return "//div[@class='filter-options']/ul/li/button[text()='" + size + "']";
+        return format("//div[@class='filter-options']/ul/li/button[text()='%s']", size);
     }
 
     private String specificShoe(int shoeNumber) {
