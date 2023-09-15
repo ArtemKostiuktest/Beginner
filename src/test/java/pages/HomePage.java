@@ -18,6 +18,10 @@ public class HomePage extends BasePage {
         waitUntilElementToBeClickable(BASE_SEARCH_FIELD).sendKeys(searchField + Keys.ENTER);
     }
 
+    public void goToCatalogueShopNow() {
+        waitUntilElementToBeClickable(SHOP_NOW_BUTTON).click();
+    }
+
     public void clickAllowAllCookie() {
         waitUntilElementToBeClickable(ALLOW_ALL_COOKIE_BUTTON).click();
     }

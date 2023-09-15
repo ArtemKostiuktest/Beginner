@@ -9,12 +9,17 @@ import java.util.List;
 
 import static utils.Utils.getElementText;
 
-public class NamePage extends BasePage {
+public class BrowseProductsPage extends BasePage {
+
     protected final String PRODUCT_TITLES_SPAN = "//span[@class ='product-block-name-wrapper']";
     protected static final String SHOES_PICK = "(//figure[@class='product-block-figure'])[1]";
 
-    public NamePage(WebDriver driver) {
+    public BrowseProductsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void selectPage() {
+        waitUntilElementToBeClickable(SHOES_PICK).click();
     }
 
     public List<String> getTitlesNames() {

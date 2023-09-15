@@ -3,8 +3,10 @@ package tests;
 import base.AbstractBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BrowseProductsPage;
+import pages.CartPage;
 import pages.HomePage;
-import pages.ShoppingCartPage;
+import pages.ProductPage;
 
 import java.util.List;
 
@@ -15,21 +17,24 @@ public class AddToCartTest extends AbstractBaseTest {
 
     @Test
     public void checkAddToCart() {
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
         HomePage homePage = new HomePage(driver);
+        ProductPage productPage = new ProductPage(driver);
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+        CartPage cartPage = new CartPage(driver);
 
-        homePage.clickAllowAllCookie();
-        shoppingCartPage.selectPage();
-        shoppingCartPage.goToCatelogue();
-        shoppingCartPage.selectSizeDropdown();
-        shoppingCartPage.selectSize();
-        shoppingCartPage.addToCart();
+        homePage.goToCatalogueShopNow();
 
-        current_price = shoppingCartPage.getInfoAboutProductOnHomePage();
+        browseProductsPage.selectPage();
 
-        shoppingCartPage.proceedToCheckout();
+        productPage.selectSizeDropdown();
+        productPage.selectSize();
+        productPage.addToCart();
 
-        actual_price = shoppingCartPage.getInfoAboutProductOnCart();
+        current_price = productPage.getInfoAboutProductsOnProductPage();
+
+        productPage.proceedToCheckout();
+
+        actual_price = cartPage.getInfoAboutProductOnCart();
 
         Assert.assertEquals(actual_price, current_price);
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 public class BasePage extends Assert {
+
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
@@ -75,7 +76,9 @@ public class BasePage extends Assert {
         actions.moveToElement(element).build().perform();
     }
 
-    public void doubleClick(WebElement element, WebDriver driver) {actions.doubleClick(element).build().perform();}
+    public void doubleClick(WebElement element, WebDriver driver) {
+        actions.doubleClick(element).build().perform();
+    }
 
     public void scrollToElement(WebElement element, WebDriver driver) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);

@@ -11,7 +11,6 @@ import pages.HomePage;
 abstract public class AbstractBaseTest {
 
     protected static WebDriver driver;
-
     public static final String BASE_URL = "https://www.vans.co.uk/";
 
     @BeforeMethod
