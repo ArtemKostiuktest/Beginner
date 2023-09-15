@@ -3,6 +3,7 @@ package base;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -10,12 +11,15 @@ import org.testng.annotations.BeforeMethod;
 abstract public class AbstractBaseTest {
 
     protected static WebDriver driver;
+    private ChromeOptions chromeOptions;
 
     public static final String BASE_URL = "https://www.vans.co.uk/";
 
     @BeforeMethod
     public void openBrowser() {
-        driver = new ChromeDriver();
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-geolocation");
+        driver = new ChromeDriver(chromeOptions);
         driver.get(BASE_URL);
         driver.manage().window().maximize();
     }

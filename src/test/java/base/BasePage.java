@@ -32,6 +32,10 @@ public class BasePage {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
     }
 
+    public WebElement waitUntilVisibilityOfElementLocated(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
     protected List<WebElement> waitUntilVisibilityOfElementsLocated(String locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
         return driver.findElements(By.xpath(locator));
