@@ -1,7 +1,9 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class BillingAddressPage extends BasePage {
 
@@ -20,7 +22,11 @@ public class BillingAddressPage extends BasePage {
     public static final String POST_CODE = "//input[@id='zipcode']";
     public static final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
     public static final String ACTUAL_DATA = "//div[@id='wp-address-display']";
+    public static final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
+    public static final String CART_NUMBER = "//input[@id='cardNumber']";
     public static int finalPrice;
+    private WebElement iframe;
+    private WebElement input_inside_iframe;
 
     public Integer getFinalPrice() {
         String priceString = waitUntilVisibilityOfElementLocated(ACTUAL_PRICE).getText();
@@ -32,7 +38,12 @@ public class BillingAddressPage extends BasePage {
     }
 
     public String getActualData() {
-        return waitUntilVisibilityOfElementLocated(ACTUAL_DATA).getText();
+        waitUntilVisibilityOfElementLocated(PAYMENT_IFRAME);
+        iframe = driver.findElement(By.xpath(PAYMENT_IFRAME));
+        driver.switchTo().frame(iframe);
+        input_inside_iframe = driver.findElement(By.xpath(CART_NUMBER));
+        driver.switchTo().defaultContent();
+        return waitUntilVisibilityOfElement(ACTUAL_DATA).getText();
     }
 
     public void selectUkraineCountry() {

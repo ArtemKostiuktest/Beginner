@@ -20,7 +20,6 @@ public class BuyingGiftCard extends AbstractBaseTest {
         CreateDesignGiftCardPage createDesignGiftCard = new CreateDesignGiftCardPage(driver);
         BillingAddressPage billingAddressPage = new BillingAddressPage(driver);
 
-        homePage.clickCookie();
         homePage.clickGiftCards();
         giftCards.clickButtonBuyGiftCard();
         createDesignGiftCard.chooseDesignCard();
@@ -33,6 +32,7 @@ public class BuyingGiftCard extends AbstractBaseTest {
         createDesignGiftCard.setMassage(MESSAGE_WITH_CARD);
         createDesignGiftCard.clickCheckBox();
         createDesignGiftCard.clickBuyNowButton();
+
         billingAddressPage.selectUkraineCountry();
         billingAddressPage.setFirstName(USER_FIRST_NAME);
         billingAddressPage.setLastName(USER_LAST_NAME);
@@ -44,7 +44,7 @@ public class BuyingGiftCard extends AbstractBaseTest {
         billingAddressPage.clickConfirmAddressButton();
         billingAddressPage.getFinalPrice();
 
-        sleep(2);
+       // sleep(2);
         assertEquals(BillingAddressPage.finalPrice, CreateDesignGiftCardPage.price);
         assertTrue(billingAddressPage.getActualData().contains(USER_FIRST_NAME));
         assertTrue(billingAddressPage.getActualData().contains(USER_LAST_NAME));
