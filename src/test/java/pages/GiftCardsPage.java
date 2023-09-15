@@ -9,7 +9,7 @@ public class GiftCardsPage extends BasePage {
         super(driver);
     }
 
-    protected static final String BUY_GIFT_CARDS = "//a[@class='gc-hero__cta gc-track']";
+    protected final String BUY_GIFT_CARDS = "//a[@class='gc-hero__cta gc-track']";
 
     public void clickButtonBuyGiftCard() {
         waitUntilElementToBeClickable(BUY_GIFT_CARDS).click();

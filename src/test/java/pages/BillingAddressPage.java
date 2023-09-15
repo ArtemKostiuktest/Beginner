@@ -11,19 +11,19 @@ public class BillingAddressPage extends BasePage {
         super(driver);
     }
 
-    protected static final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='UA']";
-    protected static final String FIRST_NAME = "//input[@id='first-name']";
-    protected static final String LAST_NAME = "//input[@id='last-name']";
-    protected static final String INSERT_ADDRESS = "//input[@id='address-1']";
-    protected static final String PHONE_NUMBER = "//input[@id='phone-1']";
-    protected static final String EMAIL = "//input[@id='email-1']";
-    protected static final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
-    protected static final String CITY_NAME = "//input[@id='city-name']";
-    protected static final String POST_CODE = "//input[@id='zipcode']";
-    protected static final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
-    protected static final String ACTUAL_DATA = "//div[@id='wp-address-display']";
-    protected static final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
-    protected static final String CART_NUMBER = "//input[@id='cardNumber']";
+    protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='UA']";
+    protected final String FIRST_NAME = "//input[@id='first-name']";
+    protected final String LAST_NAME = "//input[@id='last-name']";
+    protected final String INSERT_ADDRESS = "//input[@id='address-1']";
+    protected final String PHONE_NUMBER = "//input[@id='phone-1']";
+    protected final String EMAIL = "//input[@id='email-1']";
+    protected final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
+    protected final String CITY_NAME = "//input[@id='city-name']";
+    protected final String POST_CODE = "//input[@id='zipcode']";
+    protected final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
+    protected final String ACTUAL_DATA = "//div[@id='wp-address-display']";
+    protected final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
+    protected final String CART_NUMBER = "//input[@id='cardNumber']";
     public static int finalPrice;
     private WebElement iframe;
     private WebElement input_inside_iframe;
