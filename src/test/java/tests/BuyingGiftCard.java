@@ -21,7 +21,9 @@ public class BuyingGiftCard extends AbstractBaseTest {
         BillingAddressPage billingAddressPage = new BillingAddressPage(driver);
 
         homePage.clickGiftCards();
+
         giftCards.clickButtonBuyGiftCard();
+
         createDesignGiftCard.chooseDesignCard();
         createDesignGiftCard.choosePriceCard();
         createDesignGiftCard.getPrice();
@@ -44,7 +46,6 @@ public class BuyingGiftCard extends AbstractBaseTest {
         billingAddressPage.clickConfirmAddressButton();
         billingAddressPage.getFinalPrice();
 
-       // sleep(2);
         assertEquals(BillingAddressPage.finalPrice, CreateDesignGiftCardPage.price);
         assertTrue(billingAddressPage.getActualData().contains(USER_FIRST_NAME));
         assertTrue(billingAddressPage.getActualData().contains(USER_LAST_NAME));

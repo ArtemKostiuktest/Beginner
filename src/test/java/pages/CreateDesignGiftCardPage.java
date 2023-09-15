@@ -9,15 +9,15 @@ public class CreateDesignGiftCardPage extends BasePage {
         super(driver);
     }
 
-    private static final String DESIGN_CARD = "//button[@class='gift-card-design attr-box selected']";
-    private static final String PRICE_CARD_100 = "//button[@data-value='100']";
-    private static final String SENDER_NAME = "//input[@name='senderName']";
-    private static final String SENDER_EMAIL = "//input[@name='senderEmail']";
-    private static final String RECIPIENT_NANE = "//input[@name='recipientName']";
-    private static final String RECIPIENT_EMAIL = "//input[@name='recipientEmail']";
-    private static final String MESSAGE = "//textarea[@name='message']";
-    private static final String CHECK_BOX = "//input[@name='checkbox']";
-    private static final String BUY_NOW_BUTTON = "//button[@class='gift-card-pdp-submit button expanded']";
+    protected static final String PRICE_CARD_100 = "//button[@data-value='100']";
+    protected static final String SENDER_NAME = "//input[@name='senderName']";
+    protected static final String SENDER_EMAIL = "//input[@name='senderEmail']";
+    protected static final String RECIPIENT_NANE = "//input[@name='recipientName']";
+    protected static final String RECIPIENT_EMAIL = "//input[@name='recipientEmail']";
+    protected static final String DESIGN_CARD = "//button[@class='gift-card-design attr-box selected']";
+    protected static final String MESSAGE = "//textarea[@name='message']";
+    protected static final String CHECK_BOX = "//input[@name='checkbox']";
+    protected static final String BUY_NOW_BUTTON = "//button[@class='gift-card-pdp-submit button expanded']";
     public static int price;
 
     public Integer getPrice() {

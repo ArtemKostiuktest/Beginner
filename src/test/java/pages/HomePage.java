@@ -8,7 +8,7 @@ public class HomePage extends BasePage {
 
     protected final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
     protected final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
-    public static final String GIFT_CARDS = "//div[contains(@class,'cart-container')]//a[@data-navigation='gift']/span[@class='topnav-utility-item-label']";
+    protected static final String GIFT_CARDS = "//div[contains(@class,'cart-container')]//a[@data-navigation='gift']/span[@class='topnav-utility-item-label']";
 
     public HomePage(WebDriver driver) {
         super(driver);
