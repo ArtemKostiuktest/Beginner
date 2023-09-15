@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -17,13 +18,14 @@ public class BrowseProductsPage extends BasePage {
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
+    private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
 
     private String mensShoesSize(String size) {
         return format("//div[@class='filter-options']/ul/li/button[text()='%s']", size);
     }
 
     private String specificShoe(int shoeNumber) {
-        return "//div[@data-product-line='inline'][" + shoeNumber + "]//span[@class=\"product-block-name-wrapper\"]";
+        return format("//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']", shoeNumber);
     }
 
     public void selectSizeInFilter(String size) {
@@ -35,20 +37,25 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void selectSpecificProduct(int productNumber) {
+        scrollToElement(driver.findElement(By.xpath(specificShoe(productNumber))), driver);
         waitUntilElementToBeClickable(specificShoe(productNumber)).click();
+    }
+
+    public void closeAdd() {
+        waitUntilElementToBeClickable(CLOSE_ADD_BUTTON);
     }
 
     public List<String> getTitlesNames() {
         List<String> titles = new ArrayList<>();
-        List<WebElement> productTitleElements = waitPresenceOfElementsLocated(PRODUCT_TITLES);
-        for (WebElement element : productTitleElements) {
+        getAllProductNamesElements();
+        for (WebElement element : getAllProductNamesElements()) {
             String title = getElementText(element);
             titles.add(title);
         }
         return titles;
     }
 
-    public void skipLoading() {
+    public void waitLoading() {
         waitUntilVisibilityOfElementLocated(LOADING_ELEMENT);
         waitUntilInvisibilityOfElementLocated(LOADING_ELEMENT);
     }

@@ -1,6 +1,8 @@
 package tests;
 
 import base.AbstractBaseTest;
+import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;
@@ -9,8 +11,6 @@ import pages.ProductPage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.testng.Assert.assertFalse;
 
 public class FiltersTest extends AbstractBaseTest {
 
@@ -21,19 +21,20 @@ public class FiltersTest extends AbstractBaseTest {
 
     @Test(description = "Filtering products by size")
     public void sizeFilterTest() {
-        var homePage = new HomePage(driver);
-        var browseProductsPage = new BrowseProductsPage(driver);
+        HomePage homePage = new HomePage(driver);
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+        SoftAssertions softAssert = new SoftAssertions();
 
         homePage.openAllMenShoes();
-
         browseProductsPage.selectSizeInFilter(SHOES_SIZE);
-        browseProductsPage.skipLoading();
+        browseProductsPage.waitLoading();
         listOfProductsElement = browseProductsPage.getAllProductNamesElements();
         checkingEachProductForSizeAvailability(listOfProductsElement);
 
         for (String result : listOfAccessibility) {
-            assertFalse(result.contains(SIZE_ACCESSIBILITY_TARGET));
+            softAssert.assertThat(result).doesNotContain(SIZE_ACCESSIBILITY_TARGET);
         }
+        softAssert.assertAll();
     }
 
     private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
@@ -45,6 +46,11 @@ public class FiltersTest extends AbstractBaseTest {
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
             driver.navigate().back();
+            try {
+                browseProductsPage.waitLoading();
+            } catch (TimeoutException e) {
+                System.out.println("Find Exception: Timeout exception");
+            }
         }
     }
 }

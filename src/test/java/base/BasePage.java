@@ -5,7 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(15000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(5000));
     }
 
     public WebElement waitUntilVisibilityOfElementLocated(String locator) {
@@ -84,7 +83,11 @@ public class BasePage {
     public void doubleClick(WebElement element, WebDriver driver) {actions.doubleClick(element).build().perform();}
 
     public void scrollToElement(WebElement element, WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(True);", element);
+    }
+
+    public void scrollToElementInCenterOfBlock(WebElement element, WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: \"center\"});", element);
     }
 
     public void scrollToBottomOfThePage(WebDriver driver) {
