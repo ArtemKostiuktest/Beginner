@@ -7,11 +7,11 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
 import static utils.Utils.getElementText;
 
 public class NamePage extends BasePage {
     protected final String PRODUCT_TITLES_SPAN = "//span[@class ='product-block-name-wrapper']";
+    protected static final String SHOES_PICK = "(//figure[@class='product-block-figure'])[1]";
 
     public NamePage(WebDriver driver) {
         super(driver);

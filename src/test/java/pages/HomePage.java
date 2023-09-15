@@ -3,13 +3,10 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomePage extends BasePage {
 
+    protected static final String SHOP_NOW_BUTTON = "//a[@href='https://www.vans.co.uk/shop/en-gb/vans-gb/knu-skool#banner=WK23.TheKnuStack.CTA_ShopNow.HP_Hero']";
     protected final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
     protected final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
 
@@ -24,4 +21,5 @@ public class HomePage extends BasePage {
     public void clickAllowAllCookie() {
         waitUntilElementToBeClickable(ALLOW_ALL_COOKIE_BUTTON).click();
     }
+
 }

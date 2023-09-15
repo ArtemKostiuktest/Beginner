@@ -1,7 +1,6 @@
 package tests;
 
 import base.AbstractBaseTest;
-import jdk.jfr.Description;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -25,6 +24,7 @@ public class SearchProduct extends AbstractBaseTest {
         for (String name : listOfNames) {
             softAssert.assertThat(name).contains(nameOfSearchProduct);
         }
+
         softAssert.assertAll();
     }
 }

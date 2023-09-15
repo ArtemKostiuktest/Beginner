@@ -16,12 +16,10 @@ public class BasePage extends Assert {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
-    protected JavascriptExecutor jse;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofMillis(15000));
-        jse = (JavascriptExecutor) driver;
     }
 
     public WebElement waitUntilVisibilityOfElement(String locator) {
