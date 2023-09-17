@@ -3,13 +3,15 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 
+import static java.lang.String.format;
+
 public class CreateDesignGiftCardPage extends BasePage {
 
     public CreateDesignGiftCardPage(WebDriver driver) {
         super(driver);
     }
 
-    protected final String PRICE_CARD_100 = "//button[@data-value='100']";
+    protected final String PRICE_CARD = "//button[@data-value='%s']";
     protected final String SENDER_NAME = "//input[@name='senderName']";
     protected final String SENDER_EMAIL = "//input[@name='senderEmail']";
     protected final String RECIPIENT_NANE = "//input[@name='recipientName']";
@@ -18,20 +20,19 @@ public class CreateDesignGiftCardPage extends BasePage {
     protected final String MESSAGE = "//textarea[@name='message']";
     protected final String CHECK_BOX = "//input[@name='checkbox']";
     protected final String BUY_NOW_BUTTON = "//button[@class='gift-card-pdp-submit button expanded']";
-    public static int price;
+    public static int priceValue;
 
-    public Integer getPrice() {
-        String priceString = waitUntilVisibilityOfElementLocated(PRICE_CARD_100).getText().replaceAll("[^0-9]+", "");
-        price = Integer.parseInt(priceString);
-        return price;
+    public void getPrice(String price) {
+        String priceString = waitUntilVisibilityOfElementLocated(format(PRICE_CARD, price)).getText().replaceAll("[^0-9]+", "");
+        priceValue = Integer.parseInt(priceString);
     }
 
     public void chooseDesignCard() {
         waitUntilVisibilityOfElementLocated(DESIGN_CARD).click();
     }
 
-    public void choosePriceCard() {
-        waitUntilVisibilityOfElement(PRICE_CARD_100).click();
+    public void choosePriceCard(String price) {
+        waitUntilVisibilityOfElement(format(PRICE_CARD,price)).click();
     }
 
     public void setSenderName(String senderName) {

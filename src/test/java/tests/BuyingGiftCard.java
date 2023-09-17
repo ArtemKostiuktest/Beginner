@@ -12,9 +12,12 @@ import static org.testng.Assert.assertTrue;
 import static utils.UserData.*;
 
 public class BuyingGiftCard extends AbstractBaseTest {
+    private final String COUNTRY = "UA";
+    private final String PRICE = "100";
 
     @Test
     public void BuyGiftCard() {
+
         HomePage homePage = new HomePage(driver);
         GiftCardsPage giftCards = new GiftCardsPage(driver);
         CreateDesignGiftCardPage createDesignGiftCard = new CreateDesignGiftCardPage(driver);
@@ -25,8 +28,8 @@ public class BuyingGiftCard extends AbstractBaseTest {
         giftCards.clickButtonBuyGiftCard();
 
         createDesignGiftCard.chooseDesignCard();
-        createDesignGiftCard.choosePriceCard();
-        createDesignGiftCard.getPrice();
+        createDesignGiftCard.choosePriceCard(PRICE);
+        createDesignGiftCard.getPrice(PRICE);
         createDesignGiftCard.setSenderName(USER_LAST_NAME);
         createDesignGiftCard.setSenderEmail(USER_EMAIL);
         createDesignGiftCard.setRecipientName(RECIPIENT_NAME);
@@ -35,7 +38,7 @@ public class BuyingGiftCard extends AbstractBaseTest {
         createDesignGiftCard.clickCheckBox();
         createDesignGiftCard.clickBuyNowButton();
 
-        billingAddressPage.selectUkraineCountry();
+        billingAddressPage.selectUkraineCountry(COUNTRY);
         billingAddressPage.setFirstName(USER_FIRST_NAME);
         billingAddressPage.setLastName(USER_LAST_NAME);
         billingAddressPage.setAddress(ADDRESS);
@@ -46,13 +49,9 @@ public class BuyingGiftCard extends AbstractBaseTest {
         billingAddressPage.clickConfirmAddressButton();
         billingAddressPage.getFinalPrice();
 
-        assertEquals(BillingAddressPage.finalPrice, CreateDesignGiftCardPage.price);
-        assertTrue(billingAddressPage.getActualData().contains(USER_FIRST_NAME));
-        assertTrue(billingAddressPage.getActualData().contains(USER_LAST_NAME));
-        assertTrue(billingAddressPage.getActualData().contains(ADDRESS));
-        assertTrue(billingAddressPage.getActualData().contains(CITY));
-        assertTrue(billingAddressPage.getActualData().contains(POST_CODE));
-        assertTrue(billingAddressPage.getActualData().contains(USER_PHONE_NUMBER));
-        assertTrue(billingAddressPage.getActualData().contains(USER_EMAIL));
+        assertEquals(BillingAddressPage.finalPrice, CreateDesignGiftCardPage.priceValue);
+        for (String data : dataToCheck) {
+            assertTrue(billingAddressPage.getActualData().contains(data));
+        }
     }
 }

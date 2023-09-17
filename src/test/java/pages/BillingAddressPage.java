@@ -5,13 +5,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static java.lang.String.format;
+
 public class BillingAddressPage extends BasePage {
 
     public BillingAddressPage(WebDriver driver) {
         super(driver);
     }
 
-    protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='UA']";
+    protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
     protected final String FIRST_NAME = "//input[@id='first-name']";
     protected final String LAST_NAME = "//input[@id='last-name']";
     protected final String INSERT_ADDRESS = "//input[@id='address-1']";
@@ -25,29 +27,28 @@ public class BillingAddressPage extends BasePage {
     protected final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
     protected final String CART_NUMBER = "//input[@id='cardNumber']";
     public static int finalPrice;
-    private WebElement iframe;
-    private WebElement input_inside_iframe;
 
-    public Integer getFinalPrice() {
+
+    public void getFinalPrice() {
         String priceString = waitUntilVisibilityOfElementLocated(ACTUAL_PRICE).getText();
         int index = priceString.indexOf('.');
         int start = priceString.indexOf('£');
         String finalPriceString = priceString.substring(start, index).replaceAll("[^0-9]+", "");
         finalPrice = Integer.parseInt(finalPriceString);
-        return finalPrice;
     }
 
     public String getActualData() {
+        WebElement iframe;
         waitUntilVisibilityOfElementLocated(PAYMENT_IFRAME);
         iframe = driver.findElement(By.xpath(PAYMENT_IFRAME));
         driver.switchTo().frame(iframe);
-        input_inside_iframe = driver.findElement(By.xpath(CART_NUMBER));
+        driver.findElement(By.xpath(CART_NUMBER));
         driver.switchTo().defaultContent();
         return waitUntilVisibilityOfElement(ACTUAL_DATA).getText();
     }
 
-    public void selectUkraineCountry() {
-        waitUntilVisibilityOfElement(SELECT_UKRAINE_COUNTRY).click();
+    public void selectUkraineCountry(String country) {
+        waitUntilVisibilityOfElement(format(SELECT_UKRAINE_COUNTRY, country)).click();
     }
 
     public void setFirstName(String firstName) {
