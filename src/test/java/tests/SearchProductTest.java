@@ -1,6 +1,7 @@
 package tests;
 
-import base.AbstractBaseTest;
+import
+        base.AbstractBaseTest;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;

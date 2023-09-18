@@ -21,6 +21,7 @@ public class BrowseProductsPage extends BasePage {
     private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
     private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
     private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
+    private final String
 
     private String mensShoesSize(String size) {
         return format(SHOES_SIZE, size);

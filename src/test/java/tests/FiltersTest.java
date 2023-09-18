@@ -37,7 +37,15 @@ public class FiltersTest extends AbstractBaseTest {
         softAssert.assertAll();
     }
 
+    @Test(description = "Filtering products by size")
+    public void priceFilterTest() {
+        HomePage homePage = new HomePage(driver);
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+        SoftAssertions softAssert = new SoftAssertions();
 
+        homePage.openAllMenShoes();
+
+    }
 
     private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
         for (int i = 1; i <= elements.size(); i++) {
@@ -47,7 +55,7 @@ public class FiltersTest extends AbstractBaseTest {
             browseProductsPage.selectSpecificProduct(i);
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
-            driver.navigate().back();
+            navigatBack();
             try {
                 browseProductsPage.waitLoading();
             } catch (TimeoutException e) {
