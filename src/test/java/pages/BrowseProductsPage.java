@@ -12,9 +12,6 @@ import static java.lang.String.format;
 import static utils.Utils.getElementText;
 
 public class BrowseProductsPage extends BasePage {
-    public BrowseProductsPage(WebDriver driver) {
-        super(driver);
-    }
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
@@ -24,6 +21,10 @@ public class BrowseProductsPage extends BasePage {
     private final String PRICES_LOW_TO_HIGH = "//select[@id='sort-by']/option[@value='6']";
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
+
+    public BrowseProductsPage(WebDriver driver) {
+        super(driver);
+    }
 
     private String mensShoesSize(String size) {
         return format(SIZE, size);

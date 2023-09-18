@@ -68,8 +68,8 @@ public class FiltersTest extends AbstractBaseTest {
             browseProductsPage.selectSpecificProduct(i);
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
-            navigatBack();
             try {
+            navigatBack();
                 browseProductsPage.waitLoading();
             } catch (TimeoutException e) {
                 System.out.println("Find Exception: Timeout exception");
