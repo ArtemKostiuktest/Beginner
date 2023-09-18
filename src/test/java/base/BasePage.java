@@ -11,35 +11,37 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.testng.Assert.fail;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 @Slf4j
-public class BasePage extends Assert {
+public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(15000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(10000));
     }
 
     public WebElement waitUntilVisibilityOfElementLocated(String locator) {
-        return wait.until(visibilityOfElementLocated(By.xpath(locator)));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
     public WebElement waitUntilElementToBeClickable(String locator) {
-        return wait.until(elementToBeClickable(By.xpath(locator)));
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
     }
 
     protected List<WebElement> waitUntilVisibilityOfElementsLocated(String locator) {
-        wait.until(visibilityOfElementLocated(By.xpath(locator)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
         return driver.findElements(By.xpath(locator));
     }
 
     protected List<WebElement> waitUntilElementsToBeClickable(String locator) {
-        wait.until(elementToBeClickable(By.xpath(locator)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
         return driver.findElements(By.xpath(locator));
     }
 
@@ -60,14 +62,14 @@ public class BasePage extends Assert {
         }
     }
 
+    protected void waitUntilInvisibilityOfElementLocated(String locator) {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+    }
+
     public void goToTab(int tabNumber) {
         waitUntilNumberOfTabToBe(tabNumber);
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tabNumber - 1));
-    }
-
-    protected void waitUntilInvisibilityOfElementLocated(String locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
     public String getUrl() {
@@ -86,6 +88,10 @@ public class BasePage extends Assert {
 
     public void scrollToElement(WebElement element, WebDriver driver) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void scrollToElementInCenterOfBlock(WebElement element, WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: \"center\"});", element);
     }
 
     public void scrollToBottomOfThePage(WebDriver driver) {
