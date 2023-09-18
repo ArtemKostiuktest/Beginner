@@ -13,8 +13,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final String toddlerFilterWord = "Toddler";
     private final String yearRange = "1-4 Years";
     List<String> listOfNames;
-
-@Test(description = "Product search by name")
+    @Test(description = "Product search by name")
     public void searchProductByName() {
         HomePage homePage = new HomePage(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
