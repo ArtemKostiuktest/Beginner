@@ -12,6 +12,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final String nameOfSearchProduct = "Classic";
     private final String toddlerFilterWord = "Toddler";
     private final String yearRange = "1-4 Years";
+
     List<String> listOfNames;
 
     @Test(description = "Product search by name")
@@ -30,6 +31,7 @@ public class SearchProductTest extends AbstractBaseTest {
     }
 
     private final String nameOfSearchProducts = "Shoes";
+
     List<String> titleNames;
 
     @Test(description = "Using filter in search")
