@@ -23,10 +23,10 @@ abstract public class AbstractBaseTest {
         homePage.clickAllowAllCookie();
     }
 
-//    @AfterMethod
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void closeBrowser() {
+        driver.quit();
+    }
 
     public static void sleep(int seconds) {
         try {

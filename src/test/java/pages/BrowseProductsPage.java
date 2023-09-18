@@ -19,13 +19,15 @@ public class BrowseProductsPage extends BasePage {
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
     private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
+    private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
+    private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
 
     private String mensShoesSize(String size) {
-        return format("//div[@class='filter-options']/ul/li/button[text()='%s']", size);
+        return format(SHOES_SIZE, size);
     }
 
     private String specificShoe(int shoeNumber) {
-        return format("//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']", shoeNumber);
+        return format(SPECIFIC_SHOE, shoeNumber);
     }
 
     public void selectSizeInFilter(String size) {
@@ -37,7 +39,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void selectSpecificProduct(int productNumber) {
-        scrollToElement(driver.findElement(By.xpath(specificShoe(productNumber))), driver);
+        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificShoe(productNumber))), driver);
         waitUntilElementToBeClickable(specificShoe(productNumber)).click();
     }
 
