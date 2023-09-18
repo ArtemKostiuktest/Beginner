@@ -39,6 +39,7 @@ public class BrowseProductsPage extends BasePage {
     public void selectSizeInFilter(String size) {
         waitUntilVisibilityOfElementLocated(mensShoesSize(size)).click();
     }
+
     private int getProductElementsCount(String locator) {
         return waitPresenceOfElementsLocated(locator).size();
     }
@@ -47,7 +48,7 @@ public class BrowseProductsPage extends BasePage {
         return format(FILTER_OPTION, filter);
     }
 
-    public void selectFilterOption(String filter){
+    public void selectFilterOption(String filter) {
         waitUntilVisibilityOfElement(selectFilter(filter)).click();
     }
 
@@ -79,7 +80,7 @@ public class BrowseProductsPage extends BasePage {
 
         while (currentIndex < getProductElementsCount(Name_Of_Titles)) {
             WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(Name_Of_Titles)))).get(currentIndex);
-            scrollToElement( element, driver);
+            scrollToElement(element, driver);
 
             String name = getElementText(element);
             names.add(name);
