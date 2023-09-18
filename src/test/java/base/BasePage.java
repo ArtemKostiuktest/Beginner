@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 public class BasePage extends Assert {
+
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;

@@ -28,7 +28,6 @@ public class BillingAddressPage extends BasePage {
     protected final String CART_NUMBER = "//input[@id='cardNumber']";
     public static int finalPrice;
 
-
     public void getFinalPrice() {
         String priceString = waitUntilVisibilityOfElementLocated(ACTUAL_PRICE).getText();
         int index = priceString.indexOf('.');
