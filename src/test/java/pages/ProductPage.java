@@ -7,26 +7,37 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.format;
+
 public class ProductPage extends BasePage {
 
-   protected final String DROPDOWN_SELECT_SIZE = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
-   protected final String SELECT_EXACT_SIZE = "//div[@value='2.5']";
-   protected final String ADD_TO_CARD = "//button[@data-add-to-cart-text='add to cart']";
-   protected final String PRODUCT_TITLE = "//h1[@class='product-info-js']";
-   protected final String PRODUCT_PRICE = "//div[contains(@class, 'product-price product-price-js')]//span[contains(@class,'product-price-amount-js')]";
-   protected final String SIZE_SHOES_FIELD = "//option[@value = '2.5']";
-   protected final String PROCEED_TO_CHECKOUT = "(//div[contains(@class, 'mini-cart-actions cart-actions')])[1]";
+    protected final String DROPDOWN_SELECT_SIZE = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
+    protected final String SELECT_EXACT_SIZE = "//div[@value='%s']";
+    protected final String ADD_TO_CARD = "//button[@data-add-to-cart-text='add to cart']";
+    protected final String PRODUCT_TITLE = "//h1[@class='product-info-js']";
+    protected final String PRODUCT_PRICE = "//div[contains(@class, 'content')]//span[contains(@class,'of')]";
+    protected final String SIZE_SHOES_FIELD = "//option[@value = '%s']";
+    protected final String PROCEED_TO_CHECKOUT = "//div[contains(@class,'slide')]//a[contains(text(), 'Proceed')]";
 
     public ProductPage(WebDriver driver) {
         super(driver);
     }
 
+    public String selectExactSize(String size) {
+        return format(SELECT_EXACT_SIZE, size);
+    }
+
+    public String selectShoesSize(String size) {
+        return format(SIZE_SHOES_FIELD, size);
+    }
+
+
     public void selectSizeDropdown() {
         waitUntilElementToBeClickable(DROPDOWN_SELECT_SIZE).click();
     }
 
-    public void selectSize() {
-        waitUntilElementToBeClickable(SELECT_EXACT_SIZE).click();
+    public void selectSize(String size) {
+        waitUntilElementToBeClickable(selectExactSize(size)).click();
     }
 
     public void addToCart() {
@@ -37,7 +48,7 @@ public class ProductPage extends BasePage {
         waitUntilElementToBeClickable(PROCEED_TO_CHECKOUT).click();
     }
 
-    public List<String> getInfoAboutProductsOnProductPage() {
+    public List<String> getInfoAboutProductsOnProductPage(String size) {
         List<String> infoAboutShoes = new ArrayList<>();
 
         WebElement shoesName = waitUntilVisibilityOfElement(PRODUCT_TITLE);
@@ -46,7 +57,7 @@ public class ProductPage extends BasePage {
         WebElement shoesPrice = waitUntilVisibilityOfElement(PRODUCT_PRICE);
         infoAboutShoes.add(shoesPrice.getText());
 
-        WebElement shoesSize = waitUntilVisibilityOfElement(SIZE_SHOES_FIELD);
+        WebElement shoesSize = waitUntilVisibilityOfElement(selectShoesSize(size));
         infoAboutShoes.add(shoesSize.getText());
 
         return infoAboutShoes;

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class AddToCartTest extends AbstractBaseTest {
 
+    private static final String SIZE = "2.5";
+
     List<String> current_price;
     List<String> actual_price;
 
@@ -27,10 +29,10 @@ public class AddToCartTest extends AbstractBaseTest {
         browseProductsPage.selectPage();
 
         productPage.selectSizeDropdown();
-        productPage.selectSize();
+        productPage.selectSize(SIZE);
         productPage.addToCart();
 
-        current_price = productPage.getInfoAboutProductsOnProductPage();
+        current_price = productPage.getInfoAboutProductsOnProductPage(SIZE);
 
         productPage.proceedToCheckout();
 

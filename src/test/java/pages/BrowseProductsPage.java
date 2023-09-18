@@ -12,7 +12,7 @@ import static utils.Utils.getElementText;
 public class BrowseProductsPage extends BasePage {
 
     protected final String PRODUCT_TITLES_SPAN = "//span[@class ='product-block-name-wrapper']";
-    protected static final String SHOES_PICK = "(//figure[@class='product-block-figure'])[1]";
+    protected final String SHOES_PICK = "//figure[@class='product-block-figure']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
