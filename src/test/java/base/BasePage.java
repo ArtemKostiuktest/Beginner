@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.fail;
+import static org.testng.AssertJUnit.fail;
 
 @Slf4j
 public class BasePage {
@@ -23,12 +23,20 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofMillis(5000));
     }
 
-    public WebElement waitUntilVisibilityOfElementLocated(String locator) {
+    public WebElement waitUntilVisibilityOfElement(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
     }
 
     public WebElement waitUntilElementToBeClickable(String locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+    }
+
+    public WebElement waitUntilVisibilityOfElementLocated(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    public WebElement waitUntilElementIsPresent(String locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
     }
 
     protected List<WebElement> waitUntilVisibilityOfElementsLocated(String locator) {

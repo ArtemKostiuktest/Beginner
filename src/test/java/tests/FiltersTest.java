@@ -47,7 +47,7 @@ public class FiltersTest extends AbstractBaseTest {
             browseProductsPage.selectSpecificProduct(i);
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
-            driver.navigate().back();
+            navigateBack();
             try {
                 browseProductsPage.waitLoading();
             } catch (TimeoutException e) {
