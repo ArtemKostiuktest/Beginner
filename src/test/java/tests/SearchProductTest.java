@@ -42,7 +42,7 @@ public class SearchProductTest extends AbstractBaseTest {
         namePage.selectFilterOption(toddler);
         namePage.waitLoading();
 
-        titleNames = namePage.getTitlesNamesOneByOne();
+        titleNames = namePage.getTitlesNamesOneByOne(0);
         titleNames.forEach(title ->
                 soft.assertThat(title)
                         .as("Запис не містить " + toddler + " та " + yearRange)

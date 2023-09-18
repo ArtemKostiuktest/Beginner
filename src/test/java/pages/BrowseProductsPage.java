@@ -74,9 +74,8 @@ public class BrowseProductsPage extends BasePage {
         return titles;
     }
 
-    public List<String> getTitlesNamesOneByOne() {
+    public List<String> getTitlesNamesOneByOne(int currentIndex) {
         List<String> names = new ArrayList<>();
-        int currentIndex = 0;
 
         while (currentIndex < getProductElementsCount(Name_Of_Titles)) {
             WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(Name_Of_Titles)))).get(currentIndex);
