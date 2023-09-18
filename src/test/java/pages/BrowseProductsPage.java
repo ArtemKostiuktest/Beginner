@@ -21,7 +21,6 @@ public class BrowseProductsPage extends BasePage {
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String FILTER_TODDLER = "//span[contains(text(),'Toddler')][@class=\"facet-text\"]";
-
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
     private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
     private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
@@ -86,8 +85,6 @@ public class BrowseProductsPage extends BasePage {
         }
         return names;
     }
-
-
 
     public void waitLoading() {
         waitUntilVisibilityOfElementLocated(LOADING_ELEMENT);
