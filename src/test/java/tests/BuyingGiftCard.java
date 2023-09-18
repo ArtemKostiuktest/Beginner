@@ -12,12 +12,12 @@ import static org.testng.Assert.assertTrue;
 import static utils.UserData.*;
 
 public class BuyingGiftCard extends AbstractBaseTest {
+
     private final String COUNTRY = "UA";
     private final String PRICE = "100";
 
     @Test
     public void BuyGiftCard() {
-
         HomePage homePage = new HomePage(driver);
         GiftCardsPage giftCards = new GiftCardsPage(driver);
         CreateDesignGiftCardPage createDesignGiftCard = new CreateDesignGiftCardPage(driver);
@@ -35,7 +35,7 @@ public class BuyingGiftCard extends AbstractBaseTest {
         createDesignGiftCard.setRecipientName(RECIPIENT_NAME);
         createDesignGiftCard.setRecipientEmail(RECIPIENT_EMAIL);
         createDesignGiftCard.setMassage(MESSAGE_WITH_CARD);
-        createDesignGiftCard.clickCheckBox();
+        createDesignGiftCard.confirmTermsConditionsPrivacyPolicy();
         createDesignGiftCard.clickBuyNowButton();
 
         billingAddressPage.selectUkraineCountry(COUNTRY);

@@ -55,7 +55,7 @@ public class CreateDesignGiftCardPage extends BasePage {
         waitUntilElementToBeClickable(MESSAGE).sendKeys(massage);
     }
 
-    public void clickCheckBox() {
+    public void confirmTermsConditionsPrivacyPolicy() {
         waitUntilVisibilityOfElementLocated(CHECK_BOX).click();
     }
 
