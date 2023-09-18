@@ -51,8 +51,5 @@ public class SearchProductTest extends AbstractBaseTest {
                         .as("Запис не містить " + toddlerFilterWord + " та " + yearRange)
                         .contains(toddlerFilterWord, yearRange));
         soft.assertAll();
-
     }
 }
-
-

@@ -22,6 +22,7 @@ public class BrowseProductsPage extends BasePage {
     private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
     private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
     private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
+    private final String Name_Of_Titles = "//span[@class ='product-block-name-wrapper']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
@@ -74,10 +75,9 @@ public class BrowseProductsPage extends BasePage {
     public List<String> getTitlesNamesOneByOne() {
         List<String> names = new ArrayList<>();
         int currentIndex = 0;
-        String locator = "//span[@class ='product-block-name-wrapper']";
 
-        while (currentIndex < getProductElementsCount(locator)) {
-            WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(locator)))).get(currentIndex);
+        while (currentIndex < getProductElementsCount(Name_Of_Titles)) {
+            WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(Name_Of_Titles)))).get(currentIndex);
             scrollToElement( element, driver);
 
             String name = getElementText(element);
