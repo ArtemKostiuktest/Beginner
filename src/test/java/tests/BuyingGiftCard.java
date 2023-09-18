@@ -50,7 +50,7 @@ public class BuyingGiftCard extends AbstractBaseTest {
         billingAddressPage.getFinalPrice();
 
         assertEquals(BillingAddressPage.finalPrice, CreateDesignGiftCardPage.priceValue);
-        for (String data : dataToCheck) {
+        for (String data : dataToCheckInGiftCard) {
             assertTrue(billingAddressPage.getActualData().contains(data));
         }
     }

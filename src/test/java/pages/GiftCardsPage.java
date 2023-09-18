@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 public class GiftCardsPage extends BasePage {
 
+    protected final String BUY_GIFT_CARDS = "//a[@class='gc-hero__cta gc-track']";
+
     public GiftCardsPage(WebDriver driver) {
         super(driver);
     }
-
-    protected final String BUY_GIFT_CARDS = "//a[@class='gc-hero__cta gc-track']";
 
     public void clickButtonBuyGiftCard() {
         waitUntilElementToBeClickable(BUY_GIFT_CARDS).click();

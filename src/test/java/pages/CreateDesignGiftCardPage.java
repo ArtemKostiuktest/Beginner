@@ -7,10 +7,6 @@ import static java.lang.String.format;
 
 public class CreateDesignGiftCardPage extends BasePage {
 
-    public CreateDesignGiftCardPage(WebDriver driver) {
-        super(driver);
-    }
-
     protected final String PRICE_CARD = "//button[@data-value='%s']";
     protected final String SENDER_NAME = "//input[@name='senderName']";
     protected final String SENDER_EMAIL = "//input[@name='senderEmail']";
@@ -21,6 +17,10 @@ public class CreateDesignGiftCardPage extends BasePage {
     protected final String CHECK_BOX = "//input[@name='checkbox']";
     protected final String BUY_NOW_BUTTON = "//button[@class='gift-card-pdp-submit button expanded']";
     public static int priceValue;
+
+    public CreateDesignGiftCardPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void getPrice(String price) {
         String priceString = waitUntilVisibilityOfElementLocated(format(PRICE_CARD, price)).getText().replaceAll("[^0-9]+", "");

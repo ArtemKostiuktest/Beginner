@@ -9,10 +9,6 @@ import static java.lang.String.format;
 
 public class BillingAddressPage extends BasePage {
 
-    public BillingAddressPage(WebDriver driver) {
-        super(driver);
-    }
-
     protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
     protected final String FIRST_NAME = "//input[@id='first-name']";
     protected final String LAST_NAME = "//input[@id='last-name']";
@@ -27,6 +23,10 @@ public class BillingAddressPage extends BasePage {
     protected final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
     protected final String CART_NUMBER = "//input[@id='cardNumber']";
     public static int finalPrice;
+
+    public BillingAddressPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void getFinalPrice() {
         String priceString = waitUntilVisibilityOfElementLocated(ACTUAL_PRICE).getText();
