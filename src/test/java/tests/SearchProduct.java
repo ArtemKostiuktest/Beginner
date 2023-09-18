@@ -1,14 +1,12 @@
 package tests;
 
 import base.AbstractBaseTest;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.NamePage;
+import pages.BrowseProductPage;
 
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +17,7 @@ public class SearchProduct extends AbstractBaseTest {
     @Test(description = "Using filter in search")
     public void searchProductByName() {
         HomePage homePage = new HomePage(driver);
-        NamePage namePage = new NamePage(driver);
+        BrowseProductPage namePage = new BrowseProductPage(driver);
         SoftAssertions soft = new SoftAssertions();
 
         homePage.fillBaseSearchField(nameOfSearchProduct);

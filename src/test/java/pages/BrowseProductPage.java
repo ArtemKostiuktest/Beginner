@@ -13,7 +13,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllEle
 import static org.openqa.selenium.support.ui.ExpectedConditions.refreshed;
 import static utils.Utils.getElementText;
 
-public class NamePage extends BasePage {
+public class BrowseProductPage extends BasePage {
     protected final String PRODUCT_TITLES_SPAN = "//span[@class ='product-block-name-wrapper']";
     private final String FILTER_TODDLER = "//span[contains(text(),'Toddler')][@class=\"facet-text\"]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
@@ -21,11 +21,11 @@ public class NamePage extends BasePage {
         return waitPresenceOfElementsLocated(locator).size();
     }
 
-    public NamePage(WebDriver driver) {
+    public BrowseProductPage(WebDriver driver) {
         super(driver);
     }
 
-    public NamePage useToddlerFilter() {
+    public BrowseProductPage useToddlerFilter() {
         waitUntilElementToBeClickable(FILTER_TODDLER).click();
 
         return this;
@@ -34,13 +34,13 @@ public class NamePage extends BasePage {
 public List<String> getTitlesNames() {
     List<String> names = new ArrayList<>();
     int currentIndex = 0;
-    String locator = "//span[@class ='product-block-name-wrapper']"; // Ваш XPath
+    String locator = "//span[@class ='product-block-name-wrapper']";
 
     while (currentIndex < getProductElementsCount(locator)) {
         WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(locator)))).get(currentIndex);
         scrollToElement( element, driver);
 
-        String name = getElementText(element); // Витягуємо назву продукту
+        String name = getElementText(element);
         names.add(name);
         currentIndex++;
     }
