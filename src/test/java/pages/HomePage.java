@@ -20,12 +20,10 @@ public class HomePage extends BasePage {
         waitUntilElementToBeClickable(BASE_SEARCH_FIELD).sendKeys(searchField + Keys.ENTER);
     }
 
-    public HomePage openAllMenShoes() {
+    public void openAllMenShoes() {
         Actions action = new Actions(driver);
         action.moveToElement(menCategoryElement()).perform();
         selectViewAllMenShoes();
-
-        return this;
     }
 
     private WebElement menCategoryElement(){

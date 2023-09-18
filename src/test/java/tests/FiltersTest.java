@@ -37,6 +37,8 @@ public class FiltersTest extends AbstractBaseTest {
         softAssert.assertAll();
     }
 
+
+
     private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
         for (int i = 1; i <= elements.size(); i++) {
             ProductPage productPage = new ProductPage(driver);
