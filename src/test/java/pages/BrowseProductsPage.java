@@ -17,7 +17,7 @@ import static utils.Utils.getElementText;
 public class BrowseProductsPage extends BasePage {
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
-    private final String FILTER_TODDLER = "//span[contains(text(),'Toddler')][@class=\"facet-text\"]";
+    private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
     private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
     private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
@@ -43,10 +43,12 @@ public class BrowseProductsPage extends BasePage {
         return waitPresenceOfElementsLocated(locator).size();
     }
 
-    public BrowseProductsPage useToddlerFilter() {
-        waitUntilElementToBeClickable(FILTER_TODDLER).click();
+    private String selectFilter(String filter) {
+        return format(FILTER_OPTION, filter);
+    }
 
-        return this;
+    public void selectFilterOption(String filter){
+        waitUntilVisibilityOfElement(selectFilter(filter)).click();
     }
 
     public List<WebElement> getAllProductNamesElements() {
