@@ -17,7 +17,8 @@ public class FiltersTest extends AbstractBaseTest {
     private final String SHOES_SIZE = "2.5";
     private final String SIZE_ACCESSIBILITY_TARGET = "Out of Stock";
     private List<String> listOfAccessibility = new ArrayList<>();
-    private List<WebElement> listOfProductsElement = new ArrayList<>();
+    private List<Double> listOfProductsPrices = new ArrayList<>();
+    private List<WebElement> ProductsOptions = new ArrayList<>();
 
     @Test(description = "Filtering products by size")
     public void sizeFilterTest() {
@@ -28,8 +29,8 @@ public class FiltersTest extends AbstractBaseTest {
         homePage.openAllMenShoes();
         browseProductsPage.selectSizeInFilter(SHOES_SIZE);
         browseProductsPage.waitLoading();
-        listOfProductsElement = browseProductsPage.getAllProductNamesElements();
-        checkingEachProductForSizeAvailability(listOfProductsElement);
+        ProductsOptions = browseProductsPage.getAllProductNamesElements();
+        checkingEachProductForSizeAvailability(ProductsOptions);
 
         for (String result : listOfAccessibility) {
             softAssert.assertThat(result).doesNotContain(SIZE_ACCESSIBILITY_TARGET);
@@ -44,7 +45,19 @@ public class FiltersTest extends AbstractBaseTest {
         SoftAssertions softAssert = new SoftAssertions();
 
         homePage.openAllMenShoes();
+        browseProductsPage.selectSortByDropdown();
+        browseProductsPage.sortPricesLowToHigh();
+        browseProductsPage.waitLoading();
+        ProductsOptions = browseProductsPage.getAllProductPricesElements();
 
+        listOfProductsPrices = browseProductsPage.getPrices();
+        for (int i = 1; i < listOfProductsPrices.size(); i++) {
+            double currentValue = listOfProductsPrices.get(i);
+            double previousValue = listOfProductsPrices.get(i-1);
+            softAssert.assertThat(currentValue >= previousValue);
+            System.out.println(listOfProductsPrices.get(i));
+        }
+        softAssert.assertAll();
     }
 
     private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
