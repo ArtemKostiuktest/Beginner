@@ -9,6 +9,7 @@ import pages.HomePage;
 import java.util.List;
 
 public class SearchProductTest extends AbstractBaseTest {
+
     private final String nameOfSearchProduct = "classic";
     private final String toddler = "toddler";
     private final String yearRange = "1-4 years";
