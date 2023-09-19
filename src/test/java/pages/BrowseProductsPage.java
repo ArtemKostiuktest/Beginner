@@ -15,13 +15,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.refreshed;
 import static utils.Utils.getElementText;
 
 public class BrowseProductsPage extends BasePage {
+    public BrowseProductsPage(WebDriver driver) {
+        super(driver);
+    }
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
-    private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
-    private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
-    private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String NAME_OF_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
     private final String SPECIFIC_PRODUCT = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
@@ -30,9 +30,6 @@ public class BrowseProductsPage extends BasePage {
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
 
-    public BrowseProductsPage(WebDriver driver) {
-        super(driver);
-    }
 
     private String mensShoesSize(String size) {
         return format(SIZE, size);
