@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -18,11 +19,24 @@ public class ProductPage extends BasePage {
     protected final String PRODUCT_PRICE = "//div[contains(@class, 'content')]//span[contains(@class,'of')]";
     protected final String SIZE_SHOES_FIELD = "//option[@value = '%s']";
     protected final String PROCEED_TO_CHECKOUT = "//div[contains(@class,'slide')]//a[contains(text(), 'Proceed')]";
+    private final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
+
 
     public ProductPage(WebDriver driver) {
         super(driver);
     }
 
+    public void SelectDropdownSizeButton() {
+        waitUntilElementToBeClickable(SELECT_SIZE_BUTTON).click();
+    }
+
+    public String getValueOfSizeAccessibility(String size) {
+        return waitUntilElementToBeClickable(valueOfSizeAccessibility(size)).getText();
+    }
+
+    private String valueOfSizeAccessibility(String size) {
+        return "//div[@value='" + size + "']";
+    }
     public String selectExactSize(String size) {
         return format(SELECT_EXACT_SIZE, size);
     }

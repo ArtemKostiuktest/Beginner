@@ -5,22 +5,22 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
-public class BasePage extends Assert {
+import static org.testng.AssertJUnit.fail;
 
+@Slf4j
+public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(15000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(10000));
     }
 
     public WebElement waitUntilVisibilityOfElement(String locator) {
@@ -29,6 +29,14 @@ public class BasePage extends Assert {
 
     public WebElement waitUntilElementToBeClickable(String locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+    }
+
+    public WebElement waitUntilVisibilityOfElementLocated(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    public WebElement waitUntilElementIsPresent(String locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
     }
 
     protected List<WebElement> waitUntilVisibilityOfElementsLocated(String locator) {
@@ -58,6 +66,10 @@ public class BasePage extends Assert {
         }
     }
 
+    protected void waitUntilInvisibilityOfElementLocated(String locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+    }
+
     public void goToTab(int tabNumber) {
         waitUntilNumberOfTabToBe(tabNumber);
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
@@ -82,6 +94,10 @@ public class BasePage extends Assert {
 
     public void scrollToElement(WebElement element, WebDriver driver) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void scrollToElementInCenterOfBlock(WebElement element, WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: \"center\"});", element);
     }
 
     public void scrollToBottomOfThePage(WebDriver driver) {
