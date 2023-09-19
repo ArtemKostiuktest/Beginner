@@ -38,7 +38,7 @@ public class FiltersTest extends AbstractBaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "Filtering products by size")
+    @Test(description = "Filtering products by price(lower to high)")
     public void priceFilterTest() {
         HomePage homePage = new HomePage(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
@@ -67,12 +67,12 @@ public class FiltersTest extends AbstractBaseTest {
             browseProductsPage.selectSpecificProduct(i);
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
+            navigateGoBack();
             try {
                 browseProductsPage.waitLoading();
             } catch (TimeoutException e) {
                 System.out.println("Find Exception: Timeout exception");
             }
-            navigateGoBack();
         }
     }
 }
