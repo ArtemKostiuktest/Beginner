@@ -95,6 +95,6 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public String getGenderField(String gender) {
-        return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "".toLowerCase());
+        return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "").toLowerCase();
     }
 }
