@@ -1,6 +1,7 @@
 package tests;
 
 import base.AbstractBaseTest;
+import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;
@@ -13,6 +14,8 @@ import java.util.List;
 public class AddToCartTest extends AbstractBaseTest {
 
     private static final String SIZE = "2.5";
+    private static final String PRICE = "75.00";
+    private static final String CART_SIZE = "2.5";
 
     List<String> current_price;
     List<String> actual_price;
@@ -32,11 +35,12 @@ public class AddToCartTest extends AbstractBaseTest {
         productPage.selectSize(SIZE);
         productPage.addToCart();
 
+
         current_price = productPage.getInfoAboutProductsOnProductPage(SIZE);
 
         productPage.proceedToCheckout();
 
-        actual_price = cartPage.getInfoAboutProductOnCart();
+        actual_price = cartPage.getInfoAboutProductOnCart(CART_SIZE,PRICE);
 
         Assert.assertEquals(actual_price, current_price);
 

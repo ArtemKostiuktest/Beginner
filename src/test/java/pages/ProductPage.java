@@ -31,7 +31,6 @@ public class ProductPage extends BasePage {
         return format(SIZE_SHOES_FIELD, size);
     }
 
-
     public void selectSizeDropdown() {
         waitUntilElementToBeClickable(DROPDOWN_SELECT_SIZE).click();
     }
