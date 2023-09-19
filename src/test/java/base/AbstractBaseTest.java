@@ -40,6 +40,10 @@ abstract public class AbstractBaseTest {
         }
     }
 
+    public static void navigateGoBack() {
+        driver.navigate().back();
+    }
+
     public void openUrl(String url) {
         driver.navigate().to(url);
     }
