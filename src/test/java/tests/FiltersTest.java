@@ -16,6 +16,7 @@ public class FiltersTest extends AbstractBaseTest {
 
     private final String SHOES_SIZE = "2.5";
     private final String SIZE_ACCESSIBILITY_TARGET = "Out of Stock";
+    private final String SORT_VALUE = "Low to High";
     private List<String> listOfAccessibility = new ArrayList<>();
     private List<Double> listOfProductsPrices = new ArrayList<>();
     private List<WebElement> productsOptions = new ArrayList<>();
@@ -46,7 +47,7 @@ public class FiltersTest extends AbstractBaseTest {
 
         headerFragment.openAllMenShoes();
         browseProductsPage.selectSortByDropdown();
-        browseProductsPage.sortPricesLowToHigh();
+        browseProductsPage.sortBy(SORT_VALUE);
         browseProductsPage.waitLoading();
         productsOptions = browseProductsPage.getAllProductPricesElements();
         listOfProductsPrices = browseProductsPage.getPrices();
