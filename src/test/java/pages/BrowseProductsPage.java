@@ -15,9 +15,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.refreshed;
 import static utils.Utils.getElementText;
 
 public class BrowseProductsPage extends BasePage {
-    public BrowseProductsPage(WebDriver driver) {
-        super(driver);
-    }
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
@@ -30,6 +27,9 @@ public class BrowseProductsPage extends BasePage {
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
 
+    public BrowseProductsPage(WebDriver driver) {
+        super(driver);
+    }
 
     private String mensShoesSize(String size) {
         return format(SIZE, size);
