@@ -14,7 +14,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final String toddler = "toddler";
     private final String yearRange = "1-4 years";
     private final String nameOfSearchProducts = "Shoes";
-    private String genderFilter;
+    private String genderFilterText;
 
     List<String> titleNames;
     List<String> listOfNames;
@@ -43,13 +43,13 @@ public class SearchProductTest extends AbstractBaseTest {
         homePage.fillBaseSearchField(nameOfSearchProducts);
         browseProductsPage.selectFilterOption(toddler);
         browseProductsPage.waitLoading();
-        genderFilter = browseProductsPage.getGenderField(toddler);
+        genderFilterText = browseProductsPage.getGenderField(toddler);
 
         titleNames = browseProductsPage.getTitlesNamesOneByOne(0);
         titleNames.forEach(title ->
                 soft.assertThat(title)
-                        .as("Запис не містить " + genderFilter + " та " + yearRange)
-                        .contains(genderFilter.replaceAll("[^a-zA-Z]", "").toLowerCase(), yearRange));
+                        .as("Запис не містить " + genderFilterText + " та " + yearRange)
+                        .contains(genderFilterText, yearRange));
         soft.assertAll();
     }
 }
