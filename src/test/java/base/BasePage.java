@@ -20,7 +20,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(5000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(10000));
     }
 
     public WebElement waitUntilVisibilityOfElement(String locator) {
@@ -67,7 +67,7 @@ public class BasePage {
     }
 
     protected void waitUntilInvisibilityOfElementLocated(String locator) {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
     public void goToTab(int tabNumber) {
@@ -88,10 +88,12 @@ public class BasePage {
         actions.moveToElement(element).build().perform();
     }
 
-    public void doubleClick(WebElement element, WebDriver driver) {actions.doubleClick(element).build().perform();}
+    public void doubleClick(WebElement element, WebDriver driver) {
+        actions.doubleClick(element).build().perform();
+    }
 
     public void scrollToElement(WebElement element, WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(True);", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void scrollToElementInCenterOfBlock(WebElement element, WebDriver driver) {

@@ -9,12 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.format;
+import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.refreshed;
 import static utils.Utils.getElementText;
 
 public class BrowseProductsPage extends BasePage {
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
+    private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
+    private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
+    private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
+    private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
+    private final String NAME_OF_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
     private final String SPECIFIC_PRODUCT = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String SORT_BY_DROPDOWN = "//select[@id='sort-by']";
@@ -46,6 +54,18 @@ public class BrowseProductsPage extends BasePage {
         waitUntilVisibilityOfElementLocated(mensShoesSize(size)).click();
     }
 
+    private int getProductElementsCount(String locator) {
+        return waitPresenceOfElementsLocated(locator).size();
+    }
+
+    private String selectFilter(String filter) {
+        return format(FILTER_OPTION, filter);
+    }
+
+    public void selectFilterOption(String filter) {
+        waitUntilVisibilityOfElement(selectFilter(filter)).click();
+    }
+
     public List<WebElement> getAllProductNamesElements() {
         return waitPresenceOfElementsLocated(PRODUCT_TITLES);
     }
@@ -68,6 +88,20 @@ public class BrowseProductsPage extends BasePage {
         return titles;
     }
 
+    public List<String> getTitlesNamesOneByOne(int currentIndex) {
+        List<String> names = new ArrayList<>();
+
+        while (currentIndex < getProductElementsCount(NAME_OF_TITLES)) {
+            WebElement element = wait.until(refreshed(presenceOfAllElementsLocatedBy(xpath(NAME_OF_TITLES)))).get(currentIndex);
+            scrollToElement(element, driver);
+
+            String name = getElementText(element);
+            names.add(name);
+            currentIndex++;
+        }
+        return names;
+    }
+
     public List<Double> getPrices() {
         List<Double> prices = new ArrayList<>();
         for (int i = 1; i <= getAllProductPricesElements().size(); i++) {
@@ -83,5 +117,9 @@ public class BrowseProductsPage extends BasePage {
     public void waitLoading() {
         waitUntilVisibilityOfElementLocated(LOADING_ELEMENT);
         waitUntilInvisibilityOfElementLocated(LOADING_ELEMENT);
+    }
+
+    public String getGenderField(String gender) {
+        return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "".toLowerCase());
     }
 }
