@@ -40,11 +40,11 @@ public class FiltersTest extends AbstractBaseTest {
 
     @Test(description = "Filtering products by price(lower to high)")
     public void priceFilterTest() {
-        HomePage homePage = new HomePage(driver);
+        HeaderFragment headerFragment = new HeaderFragment(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
         SoftAssertions softAssert = new SoftAssertions();
 
-        homePage.openAllMenShoes();
+        headerFragment.openAllMenShoes();
         browseProductsPage.selectSortByDropdown();
         browseProductsPage.sortPricesLowToHigh();
         browseProductsPage.waitLoading();
