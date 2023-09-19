@@ -18,7 +18,7 @@ public class FiltersTest extends AbstractBaseTest {
     private final String SIZE_ACCESSIBILITY_TARGET = "Out of Stock";
     private List<String> listOfAccessibility = new ArrayList<>();
     private List<Double> listOfProductsPrices = new ArrayList<>();
-    private List<WebElement> ProductsOptions = new ArrayList<>();
+    private List<WebElement> productsOptions = new ArrayList<>();
 
     @Test(description = "Filtering products by size")
     public void sizeFilterTest() {
@@ -29,8 +29,8 @@ public class FiltersTest extends AbstractBaseTest {
         homePage.openAllMenShoes();
         browseProductsPage.selectSizeInFilter(SHOES_SIZE);
         browseProductsPage.waitLoading();
-        ProductsOptions = browseProductsPage.getAllProductNamesElements();
-        checkingEachProductForSizeAvailability(ProductsOptions);
+        productsOptions = browseProductsPage.getAllProductNamesElements();
+        checkingEachProductForSizeAvailability(productsOptions);
 
         for (String result : listOfAccessibility) {
             softAssert.assertThat(result).doesNotContain(SIZE_ACCESSIBILITY_TARGET);
@@ -48,7 +48,7 @@ public class FiltersTest extends AbstractBaseTest {
         browseProductsPage.selectSortByDropdown();
         browseProductsPage.sortPricesLowToHigh();
         browseProductsPage.waitLoading();
-        ProductsOptions = browseProductsPage.getAllProductPricesElements();
+        productsOptions = browseProductsPage.getAllProductPricesElements();
         listOfProductsPrices = browseProductsPage.getPrices();
 
         for (int i = 1; i < listOfProductsPrices.size(); i++) {
