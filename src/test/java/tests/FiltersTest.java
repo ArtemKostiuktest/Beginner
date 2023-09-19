@@ -6,7 +6,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;
-import pages.HomePage;
+import pages.HeaderFragment;
 import pages.ProductPage;
 
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public class FiltersTest extends AbstractBaseTest {
 
     @Test(description = "Filtering products by size")
     public void sizeFilterTest() {
-        HomePage homePage = new HomePage(driver);
+        HeaderFragment headerFragment = new HeaderFragment(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
         SoftAssertions softAssert = new SoftAssertions();
 
-        homePage.openAllMenShoes();
+        headerFragment.openAllMenShoes();
         browseProductsPage.selectSizeInFilter(SHOES_SIZE);
         browseProductsPage.waitLoading();
         productsOptions = browseProductsPage.getAllProductNamesElements();
