@@ -14,6 +14,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final String toddler = "toddler";
     private final String yearRange = "1-4 years";
     private final String nameOfSearchProducts = "Shoes";
+    private String genderFilter;
 
     List<String> titleNames;
     List<String> listOfNames;
@@ -36,18 +37,19 @@ public class SearchProductTest extends AbstractBaseTest {
     @Test(description = "Using filter in search")
     public void searchesProductByName() {
         HomePage homePage = new HomePage(driver);
-        BrowseProductsPage namePage = new BrowseProductsPage(driver);
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
         SoftAssertions soft = new SoftAssertions();
 
         homePage.fillBaseSearchField(nameOfSearchProducts);
-        namePage.selectFilterOption(toddler);
-        namePage.waitLoading();
+        browseProductsPage.selectFilterOption(toddler);
+        browseProductsPage.waitLoading();
+        genderFilter = browseProductsPage.getGenderField(toddler);
 
-        titleNames = namePage.getTitlesNamesOneByOne(0);
+        titleNames = browseProductsPage.getTitlesNamesOneByOne(0);
         titleNames.forEach(title ->
                 soft.assertThat(title)
-                        .as("Запис не містить " + toddler + " та " + yearRange)
-                        .contains(toddler, yearRange));
+                        .as("Запис не містить " + genderFilter + " та " + yearRange)
+                        .contains(genderFilter.replaceAll("[^a-zA-Z]", "").toLowerCase(), yearRange));
         soft.assertAll();
     }
 }

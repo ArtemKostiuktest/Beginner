@@ -93,4 +93,8 @@ public class BrowseProductsPage extends BasePage {
         waitUntilVisibilityOfElementLocated(LOADING_ELEMENT);
         waitUntilInvisibilityOfElementLocated(LOADING_ELEMENT);
     }
+
+    public String getGenderField(String gender) {
+        return waitUntilElementToBeClickable(selectFilter(gender)).getText();
+    }
 }
