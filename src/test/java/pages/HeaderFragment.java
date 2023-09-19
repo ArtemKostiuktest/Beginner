@@ -10,7 +10,7 @@ public class HeaderFragment extends BasePage {
     private final String BASE_SEARCH_FIELD = "//input[@name ='searchTerm']";
     private final String MEN_BUTTON = "//a[@data-navigation='men']";
     private final String MEN_SHOES_VIEW_ALL = "//a[@data-navigation='MEN-SHOES:MEN-SHOES:men']";
-    protected final String GIFT_CARDS = "//div[contains(@class,'cart-container')]//a[@data-navigation='gift']/span[@class='topnav-utility-item-label']";
+    private final String GIFT_CARDS = "//div[contains(@class,'cart-container')]//a[@data-navigation='gift']/span[@class='topnav-utility-item-label']";
 
     public HeaderFragment(WebDriver driver) {
         super(driver);
