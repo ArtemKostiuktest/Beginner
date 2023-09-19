@@ -49,13 +49,12 @@ public class FiltersTest extends AbstractBaseTest {
         browseProductsPage.sortPricesLowToHigh();
         browseProductsPage.waitLoading();
         ProductsOptions = browseProductsPage.getAllProductPricesElements();
-
         listOfProductsPrices = browseProductsPage.getPrices();
+
         for (int i = 1; i < listOfProductsPrices.size(); i++) {
             double currentValue = listOfProductsPrices.get(i);
             double previousValue = listOfProductsPrices.get(i-1);
             softAssert.assertThat(currentValue >= previousValue);
-            System.out.println(listOfProductsPrices.get(i));
         }
         softAssert.assertAll();
     }
@@ -69,7 +68,7 @@ public class FiltersTest extends AbstractBaseTest {
             productPage.SelectDropdownSizeButton();
             listOfAccessibility.add(productPage.getValueOfSizeAccessibility(SHOES_SIZE));
             try {
-            navigatBack();
+            navigateGoBack();
                 browseProductsPage.waitLoading();
             } catch (TimeoutException e) {
                 System.out.println("Find Exception: Timeout exception");

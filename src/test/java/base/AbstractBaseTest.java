@@ -40,7 +40,7 @@ abstract public class AbstractBaseTest {
         }
     }
 
-    public static void navigatBack() {
+    public static void navigateGoBack() {
         driver.navigate().back();
     }
 
