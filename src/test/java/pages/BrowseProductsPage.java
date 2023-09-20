@@ -21,7 +21,7 @@ public class BrowseProductsPage extends BasePage {
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
     private final String NAME_OF_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
-    private final String SPECIFIC_PRODUCT = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
+    private final String SPECIFIC_PRODUCT_TITLE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String SORT_BY_DROPDOWN = "//select[@id='sort-by']";
     private final String SPECIFIC_SORT_BY = "//select[@id='sort-by']/option[contains(text(),'%s')]";
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
@@ -46,7 +46,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     private String specificShoe(int shoeNumber) {
-        return format(SPECIFIC_PRODUCT, shoeNumber);
+        return format(SPECIFIC_PRODUCT_TITLE, shoeNumber);
     }
 
     public void selectSortByDropdown() {
