@@ -72,6 +72,7 @@ public class FiltersTest extends AbstractBaseTest {
         browseProductsPage.selectFilterBy(FILTER_VALUE);
         browseProductsPage.waitLoading();
         listOfProductsTitles = browseProductsPage.getTitlesNames();
+
         for (String name : listOfProductsTitles) {
             softAssert.assertThat(name).contains(FILTER_VALUE.toLowerCase());
         }
