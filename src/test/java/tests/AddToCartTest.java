@@ -16,7 +16,7 @@ public class AddToCartTest extends AbstractBaseTest {
     List<String> current_price;
     List<String> actual_price;
 
-    @Test
+    @Test(description = "Check add to cart")
     public void checkAddToCart() {
         HomePage homePage = new HomePage(driver);
         ProductPage productPage = new ProductPage(driver);
