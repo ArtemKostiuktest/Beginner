@@ -40,7 +40,7 @@ public class BrowseProductsPage extends BasePage {
         return format(SIZE, size);
     }
 
-    private String specificShoe(int shoeNumber) {
+    private String specificProduct(int shoeNumber) {
         return format(SPECIFIC_PRODUCT, shoeNumber);
     }
 
@@ -77,8 +77,8 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void selectSpecificProduct(int productNumber) {
-        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificShoe(productNumber))), driver);
-        waitUntilElementToBeClickable(specificShoe(productNumber)).click();
+        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificProduct(productNumber))), driver);
+        waitUntilElementToBeClickable(specificProduct(productNumber)).click();
     }
 
     public List<String> getTitlesNames() {
@@ -126,5 +126,8 @@ public class BrowseProductsPage extends BasePage {
     }
     public void selectPage() {
         waitUntilElementToBeClickable(SHOES_PICK).click();
+    }
+    public String selectFirstTitle(int shoeNumber){
+        return waitUntilElementToBeClickable(specificProduct(shoeNumber)).getText().toLowerCase();
     }
 }
