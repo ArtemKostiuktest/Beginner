@@ -1,7 +1,6 @@
 package tests;
 
 import base.AbstractBaseTest;
-import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;
@@ -34,7 +33,6 @@ public class AddToCartTest extends AbstractBaseTest {
         productPage.selectSizeDropdown();
         productPage.selectSize(SIZE);
         productPage.addToCart();
-
 
         current_price = productPage.getInfoAboutProductsOnProductPage(SIZE);
 

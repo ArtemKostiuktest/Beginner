@@ -19,7 +19,7 @@ public class ProductPage extends BasePage {
     protected final String PRODUCT_PRICE = "//div[contains(@class, 'content')]//span[contains(@class,'of')]";
     protected final String SIZE_SHOES_FIELD = "//option[@value = '%s']";
     protected final String PROCEED_TO_CHECKOUT = "//div[contains(@class,'slide')]//a[contains(text(), 'Proceed')]";
-    private final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
+    protected final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
 
 
     public ProductPage(WebDriver driver) {
