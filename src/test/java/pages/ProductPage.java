@@ -22,4 +22,8 @@ public class ProductPage extends BasePage {
     private String valueOfSizeAccessibility(String size) {
         return "//div[@value='" + size + "']";
     }
+
+    public void selectSize(String size) {
+        waitUntilElementToBeClickable(valueOfSizeAccessibility(size)).click();
+    }
 }
