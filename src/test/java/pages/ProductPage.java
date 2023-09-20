@@ -21,7 +21,6 @@ public class ProductPage extends BasePage {
     protected final String PROCEED_TO_CHECKOUT = "//div[contains(@class,'slide')]//a[contains(text(), 'Proceed')]";
     protected final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
 
-
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -74,7 +73,5 @@ public class ProductPage extends BasePage {
         infoAboutShoes.add(shoesSize.getText());
 
         return infoAboutShoes;
-
     }
-
 }
