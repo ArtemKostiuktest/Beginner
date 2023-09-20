@@ -36,6 +36,7 @@ public class ProductPage extends BasePage {
     private String valueOfSizeAccessibility(String size) {
         return "//div[@value='" + size + "']";
     }
+
     public String selectExactSize(String size) {
         return format(SELECT_EXACT_SIZE, size);
     }

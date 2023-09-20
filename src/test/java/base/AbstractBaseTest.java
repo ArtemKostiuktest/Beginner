@@ -29,7 +29,7 @@ abstract public class AbstractBaseTest {
 
     @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+//        driver.quit();
     }
 
     public static void sleep(int seconds) {

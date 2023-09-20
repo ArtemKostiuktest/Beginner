@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AddToCartTest extends AbstractBaseTest {
 
-    private static final String SIZE = "2.5";
+    protected static final String SIZE = "2.5";
     private static final String PRICE = "75.00";
     private static final String CART_SIZE = "2.5";
 
