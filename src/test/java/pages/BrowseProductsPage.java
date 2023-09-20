@@ -26,6 +26,7 @@ public class BrowseProductsPage extends BasePage {
     private final String FILTER_SORT_BY = "//select[@id='sort-by']/option[contains(text(),'%s')]";
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
+    protected final String SHOES_PICK = "//figure[@class='product-block-figure']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
@@ -122,5 +123,8 @@ public class BrowseProductsPage extends BasePage {
 
     public String getGenderField(String gender) {
         return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "").toLowerCase();
+    }
+    public void selectPage() {
+        waitUntilElementToBeClickable(SHOES_PICK).click();
     }
 }
