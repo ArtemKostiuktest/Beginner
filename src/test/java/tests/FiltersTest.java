@@ -17,8 +17,10 @@ public class FiltersTest extends AbstractBaseTest {
     private final String SHOES_SIZE = "2.5";
     private final String SIZE_ACCESSIBILITY_TARGET = "Out of Stock";
     private final String SORT_VALUE = "Low to High";
+    private final String FILTER_VALUE = "Old Skool";
     private List<String> listOfAccessibility = new ArrayList<>();
     private List<Double> listOfProductsPrices = new ArrayList<>();
+    private List<String> listOfProductsTitles = new ArrayList<>();
     private List<WebElement> productsOptions = new ArrayList<>();
 
     @Test(description = "Filtering products by size")
@@ -47,7 +49,7 @@ public class FiltersTest extends AbstractBaseTest {
 
         headerFragment.openAllMenShoes();
         browseProductsPage.selectSortByDropdown();
-        browseProductsPage.sortBy(SORT_VALUE);
+        browseProductsPage.selectSortBy(SORT_VALUE);
         browseProductsPage.waitLoading();
         productsOptions = browseProductsPage.getAllProductPricesElements();
         listOfProductsPrices = browseProductsPage.getPrices();
@@ -56,6 +58,23 @@ public class FiltersTest extends AbstractBaseTest {
             double currentValue = listOfProductsPrices.get(i);
             double previousValue = listOfProductsPrices.get(i-1);
             softAssert.assertThat(currentValue >= previousValue);
+        }
+        softAssert.assertAll();
+    }
+
+    @Test(description = "Filtering products by Silhouette")
+    public void silhouetteFilterTest() {
+        HeaderFragment headerFragment = new HeaderFragment(driver);
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+        SoftAssertions softAssert = new SoftAssertions();
+
+        headerFragment.openAllMenShoes();
+        browseProductsPage.selectFilterBy(FILTER_VALUE);
+        browseProductsPage.waitLoading();
+        listOfProductsTitles = browseProductsPage.getTitlesNames();
+
+        for (String name : listOfProductsTitles) {
+            softAssert.assertThat(name).contains(FILTER_VALUE.toLowerCase());
         }
         softAssert.assertAll();
     }
