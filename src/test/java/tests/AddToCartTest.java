@@ -3,10 +3,7 @@ package tests;
 import base.AbstractBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.BrowseProductsPage;
-import pages.CartPage;
-import pages.HomePage;
-import pages.ProductPage;
+import pages.*;
 
 import java.util.List;
 

@@ -19,20 +19,21 @@ public class BrowseProductsPage extends BasePage {
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
-    private final String CLOSE_ADD_BUTTON = "//div[@data-label='Close']";
-    private final String SHOES_SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
-    private final String SPECIFIC_SHOE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String NAME_OF_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
     private final String SPECIFIC_PRODUCT = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String SORT_BY_DROPDOWN = "//select[@id='sort-by']";
-    private final String PRICES_LOW_TO_HIGH = "//select[@id='sort-by']/option[@value='6']";
+    private final String FILTER_SORT_BY = "//select[@id='sort-by']/option[contains(text(),'%s')]";
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
     protected final String SHOES_PICK = "//figure[@class='product-block-figure']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
+    }
+
+    private String filterSortBy(String filter) {
+        return format(FILTER_SORT_BY, filter);
     }
 
     private String mensShoesSize(String size) {
@@ -47,8 +48,8 @@ public class BrowseProductsPage extends BasePage {
         waitUntilElementToBeClickable(SORT_BY_DROPDOWN).click();
     }
 
-    public void sortPricesLowToHigh() {
-        waitUntilElementToBeClickable(PRICES_LOW_TO_HIGH).click();
+    public void sortBy(String sortValue) {
+        waitUntilElementToBeClickable(filterSortBy(sortValue)).click();
     }
 
     public void selectSizeInFilter(String size) {
@@ -102,6 +103,7 @@ public class BrowseProductsPage extends BasePage {
         }
         return names;
     }
+
     public List<Double> getPrices() {
         List<Double> prices = new ArrayList<>();
         for (int i = 1; i <= getAllProductPricesElements().size(); i++) {

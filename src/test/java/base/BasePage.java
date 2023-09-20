@@ -20,7 +20,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(5000));
     }
 
     public WebElement waitUntilVisibilityOfElement(String locator) {
