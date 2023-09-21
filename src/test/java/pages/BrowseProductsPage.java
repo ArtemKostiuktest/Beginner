@@ -152,13 +152,13 @@ public class BrowseProductsPage extends BasePage {
        waitUntilElementToBeClickable(LOAD_MORE_BUTTON).click();
     }
 
-    public WebElement signUpElement() {
-        return waitUntilElementToBeClickable(SIGN_UP_EMAIL_FIELD);
+    public WebElement loadMoreElement() {
+        return waitUntilElementToBeClickable(LOAD_MORE_BUTTON);
     }
 
     public void loadAll() {
         do{
-            scrollToElementInCenterOfBlock(signUpElement(), driver);
+            scrollToElementInCenterOfBlock(loadMoreElement(), driver);
             loadMore();
             waitLoading();
         }

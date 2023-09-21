@@ -92,6 +92,7 @@ public class FiltersTest extends AbstractBaseTest {
         browseProductsPage.selectFilterBy(FILTER_VALUE);
         browseProductsPage.waitLoading();
         browseProductsPage.loadAll();
+
         softAssert.assertThat(filterProductValue).isEqualTo(browseProductsPage.getTitlesNames().size());
     }
 
