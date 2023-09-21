@@ -35,5 +35,4 @@ public class PaymentPage extends BasePage {
     public boolean isMakePaymentEnabled() {
         return isElementEnabled(MAKE_PAYMENT_BUTTON);
     }
-
 }

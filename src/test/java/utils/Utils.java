@@ -13,5 +13,4 @@ public class Utils {
         WebElement element = driver.findElement(By.xpath(locator));
         return driver.switchTo().frame(element);
     }
-
 }
