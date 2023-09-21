@@ -20,7 +20,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(5000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(6000));
     }
 
     public WebElement waitUntilVisibilityOfElement(String locator) {
@@ -86,6 +86,10 @@ public class BasePage {
 
     public boolean isElementEnabled(String locator) {
         return driver.findElement(By.xpath(locator)).isEnabled();
+    }
+
+    public boolean isElementDisplayed(WebDriver driver, String locator) {
+        return driver.findElement(By.xpath(locator)).isDisplayed();
     }
 
     public void moveCursor(WebElement element, WebDriver driver) {
