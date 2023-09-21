@@ -27,18 +27,18 @@ abstract public class AbstractBaseTest {
         homePage.clickAllowAllCookie();
     }
 
-//    @AfterMethod
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
-//
-//    public static void sleep(int seconds) {
-//        try {
-//            Thread.sleep(seconds * 1000L);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @AfterMethod
+    public void closeBrowser() {
+        driver.quit();
+    }
+
+    public static void sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void navigateGoBack() {
         driver.navigate().back();

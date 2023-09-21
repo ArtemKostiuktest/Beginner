@@ -19,6 +19,7 @@ public class FiltersTest extends AbstractBaseTest {
     private final String SORT_VALUE = "Low to High";
     private final String FILTER_VALUE = "Old Skool";
     private int filterProductValue;
+
     private List<String> listOfAccessibility = new ArrayList<>();
     private List<Double> listOfProductsPrices = new ArrayList<>();
     private List<String> listOfProductsTitles = new ArrayList<>();
@@ -57,7 +58,7 @@ public class FiltersTest extends AbstractBaseTest {
 
         for (int i = 1; i < listOfProductsPrices.size(); i++) {
             double currentValue = listOfProductsPrices.get(i);
-            double previousValue = listOfProductsPrices.get(i-1);
+            double previousValue = listOfProductsPrices.get(i - 1);
             softAssert.assertThat(currentValue >= previousValue);
         }
         softAssert.assertAll();
@@ -80,7 +81,7 @@ public class FiltersTest extends AbstractBaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "Checking the compliance of the quantitative value of the filter")
+    @Test(description = "Checking the product value of the filter")
     public void filterProductValueTest() {
         HeaderFragment headerFragment = new HeaderFragment(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);

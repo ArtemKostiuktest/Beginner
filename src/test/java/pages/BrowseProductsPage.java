@@ -133,7 +133,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     private Double getSpecificPrice(int i) {
-        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE,i)).getAttribute("data-amount"));
+        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE, i)).getAttribute("data-amount"));
     }
 
     public void waitLoading() {
@@ -144,12 +144,13 @@ public class BrowseProductsPage extends BasePage {
     public String getGenderField(String gender) {
         return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "").toLowerCase();
     }
+
     public void selectPage() {
         waitUntilElementToBeClickable(SHOES_PICK).click();
     }
 
     public void loadMore() {
-       waitUntilElementToBeClickable(LOAD_MORE_BUTTON).click();
+        waitUntilElementToBeClickable(LOAD_MORE_BUTTON).click();
     }
 
     public WebElement loadMoreElement() {
@@ -157,11 +158,10 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void loadAll() {
-        do{
+        while (isElementDisplayed(driver, LOAD_MORE_BUTTON)) {
             scrollToElementInCenterOfBlock(loadMoreElement(), driver);
             loadMore();
             waitLoading();
         }
-        while (isElementDisplayed(driver, LOAD_MORE_BUTTON));
     }
 }
