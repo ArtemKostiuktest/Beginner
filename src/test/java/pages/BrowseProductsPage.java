@@ -17,39 +17,48 @@ import static utils.Utils.getElementText;
 public class BrowseProductsPage extends BasePage {
 
     private final String PRODUCT_TITLES = "//span[@class ='product-block-name-wrapper']";
-    private final String FILTER_OPTION = "//button[contains(@data-facet-value,'%s')]";
+    private final String SORT_OPTION = "//button[contains(@data-facet-value,'%s')]";
     private final String LOADING_ELEMENT = "//div[@id='loading-spinner']";
     private final String NAME_OF_TITLES = "//span[@class ='product-block-name-wrapper']";
     private final String SIZE = "//div[@class='filter-options']/ul/li/button[text()='%s']";
-    private final String SPECIFIC_PRODUCT = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
+    private final String SPECIFIC_PRODUCT_TITLE = "//div[@data-product-line='inline'][%s]//span[@class='product-block-name-wrapper']";
     private final String SORT_BY_DROPDOWN = "//select[@id='sort-by']";
-    private final String FILTER_SORT_BY = "//select[@id='sort-by']/option[contains(text(),'%s')]";
+    private final String SPECIFIC_SORT_BY = "//select[@id='sort-by']/option[contains(text(),'%s')]";
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
+    private final String FILTER_OPTION = "//button/span[contains(text(),'%s')]";
     protected final String SHOES_PICK = "//figure[@class='product-block-figure']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
     }
 
-    private String filterSortBy(String filter) {
-        return format(FILTER_SORT_BY, filter);
+    private String filterBy(String filter) {
+        return format(FILTER_OPTION, filter);
+    }
+
+    private String sortBy(String sortValue) {
+        return format(SPECIFIC_SORT_BY, sortValue);
     }
 
     private String mensShoesSize(String size) {
         return format(SIZE, size);
     }
 
-    private String specificProduct(int shoeNumber) {
-        return format(SPECIFIC_PRODUCT, shoeNumber);
+    private String specificShoe(int shoeNumber) {
+        return format(SPECIFIC_PRODUCT_TITLE, shoeNumber);
     }
 
     public void selectSortByDropdown() {
         waitUntilElementToBeClickable(SORT_BY_DROPDOWN).click();
     }
 
-    public void sortBy(String sortValue) {
-        waitUntilElementToBeClickable(filterSortBy(sortValue)).click();
+    public void selectSortBy(String sortValue) {
+        waitUntilElementToBeClickable(sortBy(sortValue)).click();
+    }
+
+    public void selectFilterBy(String filterValue) {
+        waitUntilElementToBeClickable(filterBy(filterValue)).click();
     }
 
     public void selectSizeInFilter(String size) {
@@ -61,7 +70,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     private String selectFilter(String filter) {
-        return format(FILTER_OPTION, filter);
+        return format(SORT_OPTION, filter);
     }
 
     public void selectFilterOption(String filter) {
@@ -78,7 +87,7 @@ public class BrowseProductsPage extends BasePage {
 
     public void selectSpecificProduct(int productNumber) {
         scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificProduct(productNumber))), driver);
-        waitUntilElementToBeClickable(specificProduct(productNumber)).click();
+        waitUntilElementToBeClickable(specificShoe(productNumber)).click();
     }
 
     public List<String> getTitlesNames() {
