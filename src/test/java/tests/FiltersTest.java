@@ -4,7 +4,6 @@ import base.AbstractBaseTest;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import pages.BrowseProductsPage;
 import pages.HeaderFragment;
@@ -82,7 +81,7 @@ public class FiltersTest extends AbstractBaseTest {
     }
 
     @Test(description = "Checking the compliance of the quantitative value of the filter")
-    public void priceSliderTest() {
+    public void filterProductValueTest() {
         HeaderFragment headerFragment = new HeaderFragment(driver);
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
         SoftAssertions softAssert = new SoftAssertions();
