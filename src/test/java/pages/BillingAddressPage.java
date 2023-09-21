@@ -5,31 +5,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import static java.lang.String.format;
-import static utils.Utils.getElementText;
+import static utils.Utils.switchToIframe;
 
 public class BillingAddressPage extends BasePage {
 
-    protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
-    protected final String FIRST_NAME = "//input[@id='first-name']";
-    protected final String LAST_NAME = "//input[@id='last-name']";
-    protected final String INSERT_ADDRESS = "//input[@id='address-1']";
-    protected final String PHONE_NUMBER = "//input[@id='phone-1']";
-    protected final String EMAIL = "//input[@id='email-1']";
-    protected final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
-    protected final String CITY_NAME = "//input[@id='city-name']";
-    protected final String POST_CODE = "//input[@id='zipcode']";
-    protected final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
-    protected final String ACTUAL_DATA = "//div[@id='wp-address-display']";
-    protected final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
-    protected final String CART_NUMBER = "//input[@id='cardNumber']";
-    protected final String ACCEPT_TERMS_CHECKBOX = "//input[@id='wp-CheckboxConfirmTermsAndConditions']";
-    protected final String PROCEED_TO_PAYMENT = "//a[@class='button primary expand btn-shipping-address-js']";
-    protected final String ADDRESS_INFO = "//span[@class ='billing-address-part']";
+    private final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
+    private final String FIRST_NAME = "//input[@id='first-name']";
+    private final String LAST_NAME = "//input[@id='last-name']";
+    private final String INSERT_ADDRESS = "//input[@id='address-1']";
+    private final String PHONE_NUMBER = "//input[@id='phone-1']";
+    private final String EMAIL = "//input[@id='email-1']";
+    private final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
+    private final String CITY_NAME = "//input[@id='city-name']";
+    private final String POST_CODE = "//input[@id='zipcode']";
+    private final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
+    private final String ACTUAL_DATA = "//div[@id='wp-address-display']";
+    private final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
+    private final String CART_NUMBER = "//input[@id='cardNumber']";
+    private final String ACCEPT_TERMS_CHECKBOX = "//input[@id='wp-CheckboxConfirmTermsAndConditions']";
+    private final String PROCEED_TO_PAYMENT = "//a[@class='button primary expand btn-shipping-address-js']";
+    private final String BILLING_INFO = "//div[@class='billing-address-display']";
+    private final String MONTH_DATA_CARD = "//input[@class='textbox expiry expiry-month']";
+    private final String EXPIRY_YEAR_CARD = "//input[@class='textbox expiry expiry-year']";
+    private final String SECURITY_CODE_BUTTON = "//input[@class='textbox pin security-code']";
+    private final String CARD_HOLDER_NAME ="//input[@class='textbox cardholder-name']";
+    private final String MAKE_PAYMENT_BUTTON = "//input[@class='button btn-make-payment']";
+    private final String IFRAME = "//iframe[@title='Payment Pages']";
     public static int finalPrice;
 
     public BillingAddressPage(WebDriver driver) {
@@ -98,50 +100,24 @@ public class BillingAddressPage extends BasePage {
         waitUntilElementToBeClickable(PROCEED_TO_PAYMENT).click();
     }
 
-    public List<String> getInfoAboutShippingData() {
-        List<String> infoAboutData = new ArrayList<>();
-        infoAboutData.add(waitUntilVisibilityOfElement(FIRST_NAME).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(LAST_NAME).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(CONFIRM_ADDRESS).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(CITY_NAME).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(POST_CODE).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(PHONE_NUMBER).getText());
-        infoAboutData.add(waitUntilVisibilityOfElement(EMAIL).getText());
-
-        return infoAboutData;
+    public void enterCartForm(String cartNumber,String cardMonthBut, String cardYearBut, String securityCode , String nameCardHolder){
+        switchToIframe(driver, IFRAME);
+        waitUntilElementIsPresent(CART_NUMBER).sendKeys(cartNumber);
+        waitUntilElementIsPresent(MONTH_DATA_CARD).sendKeys(cardMonthBut);
+        waitUntilElementIsPresent(EXPIRY_YEAR_CARD).sendKeys(cardYearBut);
+        waitUntilElementIsPresent(SECURITY_CODE_BUTTON).sendKeys(securityCode);
+        waitUntilElementIsPresent(CARD_HOLDER_NAME).sendKeys(nameCardHolder);
     }
 
-    public List<WebElement> getAllProductNamesElements() {
-        return waitPresenceOfElementsLocated(ADDRESS_INFO);
+    public boolean isMakePaymentEnabled(){
+        return isElementEnabled(MAKE_PAYMENT_BUTTON);
     }
 
-    public List<String> getInfoAboutPaymentData() {
-        List<String> infoAboutData = new ArrayList<>();
-        boolean isFirstElement = true;
-
-        for (WebElement element : getAllProductNamesElements()) {
-            String title = getElementText(element);
-
-            if (isFirstElement) {
-                String[] parts = title.split(" ");
-                for (String part : parts) {
-                    infoAboutData.add(part);
-                }
-                isFirstElement = false;
-            } else {
-                infoAboutData.add(title);
-            }
-        }
-
-        Iterator<String> iterator = infoAboutData.iterator();
-        while (iterator.hasNext()) {
-            String item = iterator.next();
-            if (item.isEmpty()) {
-                iterator.remove();
-            }
-        }
-
-        return infoAboutData;
+    public String getAllBillingInfo() {
+        return waitUntilVisibilityOfElementLocated(BILLING_INFO).getText();
     }
+
+
 }
+
 

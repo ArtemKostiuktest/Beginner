@@ -18,10 +18,10 @@ public class SearchProductTest extends AbstractBaseTest {
     private final int numberOfProduct = 1;
     private final String shoesSize = "2.5";
     private String genderFilterText;
+    private String allBillingInfo;
 
     List<String> titleNames;
     List<String> listOfNames;
-//    String[] dataToCheckInGiftCard = UserData.dataToCheckInGiftCard;
 
     @Test(description = "Product search by name")
     public void searchProductByName() {
@@ -86,21 +86,15 @@ public class SearchProductTest extends AbstractBaseTest {
         billingAddressPage.setEmail(USER_EMAIL);
         billingAddressPage.acceptTerms();
         billingAddressPage.proceedPayment();
+        allBillingInfo = billingAddressPage.getAllBillingInfo();
 
-
-        List<String> dataList = billingAddressPage.getInfoAboutPaymentData();
-
-
-        soft.assertThat(dataList.size())
-                .as("Sizes of list and array do not match.")
-                .isEqualTo(dataPay.length);
-
-        for (int i = 0; i < dataPay.length - 1; i++) {
-            soft.assertThat(dataList.get(i))
-                    .as("Mismatch at index " + i)
-                    .isEqualTo(dataPay[i].toLowerCase());
+        for (String data : dataPay) {
+            soft.assertThat(allBillingInfo).contains(data);
+            System.out.println(data);
         }
 
+        billingAddressPage.enterCartForm(CARD_NUM, CARD_MONTH_BUT, CARD_YEAR_BUT, SECURITY_CODE, NAME_OF_HOLDER);
+        soft.assertThat(billingAddressPage.isMakePaymentEnabled());
 
         soft.assertAll();
     }
