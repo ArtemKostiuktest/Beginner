@@ -45,7 +45,7 @@ public class BrowseProductsPage extends BasePage {
         return format(SIZE, size);
     }
 
-    private String specificShoe(int shoeNumber) {
+    private String specificProduct(int shoeNumber) {
         return format(SPECIFIC_PRODUCT_TITLE, shoeNumber);
     }
 
@@ -87,7 +87,7 @@ public class BrowseProductsPage extends BasePage {
 
     public void selectSpecificProduct(int productNumber) {
         scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificProduct(productNumber))), driver);
-        waitUntilElementToBeClickable(specificShoe(productNumber)).click();
+        waitUntilElementToBeClickable(specificProduct(productNumber)).click();
     }
 
     public List<String> getTitlesNames() {
@@ -122,7 +122,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     private Double getSpecificPrice(int i) {
-        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE,i)).getAttribute("data-amount"));
+        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE, i)).getAttribute("data-amount"));
     }
 
     public void waitLoading() {
@@ -133,10 +133,12 @@ public class BrowseProductsPage extends BasePage {
     public String getGenderField(String gender) {
         return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "").toLowerCase();
     }
+
     public void selectPage() {
         waitUntilElementToBeClickable(SHOES_PICK).click();
     }
-    public String selectFirstTitle(int shoeNumber){
+
+    public String selectFirstTitle(int shoeNumber) {
         return waitUntilElementToBeClickable(specificProduct(shoeNumber)).getText().toLowerCase();
     }
 }

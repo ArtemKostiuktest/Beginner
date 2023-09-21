@@ -63,6 +63,7 @@ public class SearchProductTest extends AbstractBaseTest {
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = new CartPage(driver);
+        PaymentPage paymentPage = new PaymentPage(driver);
         BillingAddressPage billingAddressPage = new BillingAddressPage(driver);
         SoftAssertions soft = new SoftAssertions();
 
@@ -86,15 +87,15 @@ public class SearchProductTest extends AbstractBaseTest {
         billingAddressPage.setEmail(USER_EMAIL);
         billingAddressPage.acceptTerms();
         billingAddressPage.proceedPayment();
-        allBillingInfo = billingAddressPage.getAllBillingInfo();
+        allBillingInfo = paymentPage.getAllBillingInfo();
 
         for (String data : dataPay) {
             soft.assertThat(allBillingInfo).contains(data);
             System.out.println(data);
         }
 
-        billingAddressPage.enterCartForm(CARD_NUM, CARD_MONTH_BUT, CARD_YEAR_BUT, SECURITY_CODE, NAME_OF_HOLDER);
-        soft.assertThat(billingAddressPage.isMakePaymentEnabled());
+        paymentPage.enterCartForm(CARD_NUM, CARD_MONTH_BUT, CARD_YEAR_BUT, SECURITY_CODE, NAME_OF_HOLDER);
+        soft.assertThat(paymentPage.isMakePaymentEnabled());
 
         soft.assertAll();
     }
