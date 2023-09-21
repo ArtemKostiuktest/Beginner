@@ -92,7 +92,4 @@ public class BillingAddressPage extends BasePage {
     public void proceedPayment() {
         waitUntilElementToBeClickable(PROCEED_TO_PAYMENT).click();
     }
-
 }
-
-
