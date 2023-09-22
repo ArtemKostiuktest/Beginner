@@ -17,6 +17,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final String nameOfSearchProducts = "Shoes";
     private final int numberOfProduct = 1;
     private final String shoesSize = "2.5";
+    private final String invalidQuery = "*";
     private String genderFilterText;
     private String allBillingInfo;
 
@@ -98,5 +99,16 @@ public class SearchProductTest extends AbstractBaseTest {
         soft.assertThat(paymentPage.isMakePaymentEnabled());
 
         soft.assertAll();
+    }
+
+    @Test(description = "Search with invalid query")
+    public void searchWithInvalidQuery() {
+        HeaderFragment headerFragment = new HeaderFragment(driver);
+        SoftAssertions soft = new SoftAssertions();
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+
+        headerFragment.fillBaseSearchField(invalidQuery);
+        soft.assertThat(browseProductsPage.foundProducts());
+
     }
 }
