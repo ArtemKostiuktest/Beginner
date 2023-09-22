@@ -69,15 +69,17 @@ public class SearchProductTest extends AbstractBaseTest {
         SoftAssertions soft = new SoftAssertions();
 
         headerFragment.fillBaseSearchField(nameOfSearchProducts);
-        soft.assertThat(browseProductsPage.selectFirstTitle(numberOfProduct)).contains(nameOfSearchProducts.toLowerCase());
+        soft.assertThat(browseProductsPage.getFirstTitle()).contains(nameOfSearchProducts.toLowerCase());
         browseProductsPage.selectSpecificProduct(numberOfProduct);
         soft.assertThat(productPage.selectTitleProduct()).contains(nameOfSearchProducts.toLowerCase());
         productPage.SelectDropdownSizeButton();
         productPage.selectSize(shoesSize);
         productPage.addToCart();
         productPage.proceedToCheckout();
+
         soft.assertThat(cartPage.getProductTitle()).contains(nameOfSearchProducts.toLowerCase());
         cartPage.checkoutSecurely();
+
 
         billingAddressPage.setFirstName(USER_FIRST_NAME);
         billingAddressPage.setLastName(USER_LAST_NAME);

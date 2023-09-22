@@ -57,15 +57,18 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void selectSortByDropdown() {
+        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(SORT_BY_DROPDOWN)), driver);
         waitUntilElementToBeClickable(SORT_BY_DROPDOWN).click();
     }
 
     public void selectSortBy(String sortValue) {
         waitUntilElementToBeClickable(sortBy(sortValue)).click();
+        waitLoading();
     }
 
     public void selectFilterBy(String filterValue) {
         waitUntilElementToBeClickable(filterBy(filterValue)).click();
+        waitLoading();
     }
 
     public int getFilterCounter(String filterValue) {
@@ -74,6 +77,7 @@ public class BrowseProductsPage extends BasePage {
 
     public void selectSizeInFilter(String size) {
         waitUntilVisibilityOfElementLocated(mensShoesSize(size)).click();
+        waitLoading();
     }
 
     private int getProductElementsCount(String locator) {
@@ -149,8 +153,8 @@ public class BrowseProductsPage extends BasePage {
         waitUntilElementToBeClickable(SHOES_PICK).click();
     }
 
-    public String selectFirstTitle(int shoeNumber) {
-        return waitUntilElementToBeClickable(specificProduct(shoeNumber)).getText().toLowerCase();
+    public String getFirstTitle() {
+        return waitUntilElementToBeClickable(specificProduct(1)).getText().toLowerCase();
     }
 
     public void loadMore() {
