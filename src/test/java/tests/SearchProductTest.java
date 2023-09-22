@@ -109,17 +109,20 @@ public class SearchProductTest extends AbstractBaseTest {
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
 
         headerFragment.fillBaseSearchField(invalidQuery);
+
         soft.assertThat(browseProductsPage.foundProducts());
 
     }
 
     @Test
-    public void searchUsingCaseInsensitiveQuery(){
+    public void searchUsingCaseInsensitiveQuery() {
         HeaderFragment headerFragment = new HeaderFragment(driver);
         SoftAssertions soft = new SoftAssertions();
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
 
         headerFragment.fillBaseSearchField(caseInsensitiveQuery);
+
+        soft.assertThat(browseProductsPage.selectFirstTitle(numberOfProduct)).contains(caseInsensitiveQuery.toLowerCase());
 
     }
 }
