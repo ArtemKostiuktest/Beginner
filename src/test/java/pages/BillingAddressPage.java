@@ -21,7 +21,7 @@ public class BillingAddressPage extends BasePage {
     private final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
     private final String ACTUAL_DATA = "//div[@id='wp-address-display']";
     private final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
-    private final String CARD_NUMBER = "//input[@id='cardNumber']";
+    private final String CART_NUMBER = "//input[@id='cardNumber']";
     private final String ACCEPT_TERMS_CHECKBOX = "//input[@id='wp-CheckboxConfirmTermsAndConditions']";
     private final String PROCEED_TO_PAYMENT = "//a[@class='button primary expand btn-shipping-address-js']";
 
@@ -44,7 +44,7 @@ public class BillingAddressPage extends BasePage {
         waitUntilVisibilityOfElementLocated(PAYMENT_IFRAME);
         iframe = driver.findElement(By.xpath(PAYMENT_IFRAME));
         driver.switchTo().frame(iframe);
-        driver.findElement(By.xpath(CARD_NUMBER));
+        driver.findElement(By.xpath(CART_NUMBER));
         driver.switchTo().defaultContent();
         return waitUntilVisibilityOfElement(ACTUAL_DATA).getText();
     }
