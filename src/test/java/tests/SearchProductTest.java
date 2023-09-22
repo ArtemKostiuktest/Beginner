@@ -81,6 +81,7 @@ public class SearchProductTest extends AbstractBaseTest {
         soft.assertThat(cartPage.getProductTitle()).contains(nameOfSearchProducts.toLowerCase());
         cartPage.checkoutSecurely();
 
+
         billingAddressPage.setFirstName(USER_FIRST_NAME);
         billingAddressPage.setLastName(USER_LAST_NAME);
         billingAddressPage.setAddress(ADDRESS);
@@ -122,6 +123,6 @@ public class SearchProductTest extends AbstractBaseTest {
 
         headerFragment.fillBaseSearchField(caseInsensitiveQuery);
 
-        soft.assertThat(browseProductsPage.selectFirstTitle(numberOfProduct)).contains(caseInsensitiveQuery.toLowerCase());
+        soft.assertThat(browseProductsPage.getFirstTitle()).contains(caseInsensitiveQuery.toLowerCase());
     }
 }
