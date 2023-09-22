@@ -67,7 +67,7 @@ public class BasePage {
     }
 
     protected void waitUntilInvisibilityOfElementLocated(String locator) {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
     public void goToTab(int tabNumber) {
@@ -88,10 +88,12 @@ public class BasePage {
         actions.moveToElement(element).build().perform();
     }
 
-    public void doubleClick(WebElement element, WebDriver driver) {actions.doubleClick(element).build().perform();}
+    public void doubleClick(WebElement element, WebDriver driver) {
+        actions.doubleClick(element).build().perform();
+    }
 
     public void scrollToElement(WebElement element, WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(True);", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void scrollToElementInCenterOfBlock(WebElement element, WebDriver driver) {

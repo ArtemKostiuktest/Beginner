@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.BillingAddressPage;
 import pages.CreateDesignGiftCardPage;
 import pages.GiftCardsPage;
-import pages.HomePage;
+import pages.HeaderFragment;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -18,12 +18,12 @@ public class BuyingGiftCard extends AbstractBaseTest {
 
     @Test
     public void BuyGiftCard() {
-        HomePage homePage = new HomePage(driver);
+        HeaderFragment headerFragment = new HeaderFragment(driver);
         GiftCardsPage giftCards = new GiftCardsPage(driver);
         CreateDesignGiftCardPage createDesignGiftCard = new CreateDesignGiftCardPage(driver);
         BillingAddressPage billingAddressPage = new BillingAddressPage(driver);
 
-        homePage.clickGiftCards();
+        headerFragment.clickGiftCards();
 
         giftCards.clickButtonBuyGiftCard();
 
