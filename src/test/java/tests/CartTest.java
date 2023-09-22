@@ -27,8 +27,7 @@ public class CartTest extends AbstractBaseTest {
     List<String> current_price;
     List<String> actual_price;
 
-    @BeforeMethod
-    public void setUpClass() {
+    public void preconditions() {
         homePage = new HomePage(driver);
         productPage = new ProductPage(driver);
         browseProductsPage = new BrowseProductsPage(driver);
@@ -44,7 +43,7 @@ public class CartTest extends AbstractBaseTest {
 
     @Test(description = "Add product to cart")
     public void checkAddToCart() {
-
+        preconditions();
         current_price = productPage.getInfoAboutProductsOnProductPage(SIZE);
         productPage.proceedToCheckout();
         actual_price = cartPage.getInfoAboutProductOnCart(CART_SIZE, PRICE);
@@ -55,6 +54,7 @@ public class CartTest extends AbstractBaseTest {
 
     @Test(description = "Delete product from cart")
     public void checkDeleteProductFromCart() {
+        preconditions();
         productPage.proceedToCheckout();
         cartPage.removeItem();
 
