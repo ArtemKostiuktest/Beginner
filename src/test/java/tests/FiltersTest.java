@@ -96,6 +96,11 @@ public class FiltersTest extends AbstractBaseTest {
         softAssert.assertThat(filterProductValue).isEqualTo(browseProductsPage.getTitlesNames().size());
     }
 
+    @Test(description = "Using filters while shopping")
+    public void filterWhileShoppingTest() {
+
+    }
+
     private void checkingEachProductForSizeAvailability(List<WebElement> elements) {
         for (int i = 1; i <= elements.size(); i++) {
             ProductPage productPage = new ProductPage(driver);
