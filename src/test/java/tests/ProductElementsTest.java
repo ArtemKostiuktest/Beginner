@@ -37,6 +37,5 @@ public class ProductElementsTest extends AbstractBaseTest {
         softAssert.assertTrue(socksDescriptionPage.isPriceOfGoodVisible(), "The element is not displayed in SocksDescriptionPage");
         softAssert.assertTrue(socksDescriptionPage.isColorOfGoodVisible(), "The element is not displayed in SocksDescriptionPage");
         softAssert.assertAll();
-
     }
 }

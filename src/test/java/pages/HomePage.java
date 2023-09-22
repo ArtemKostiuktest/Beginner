@@ -19,5 +19,4 @@ public class HomePage extends BasePage {
     public void goToCatalogueShopNow(){
         waitUntilElementToBeClickable(SHOP_NOW_BUTTON).click();
     }
-
 }
