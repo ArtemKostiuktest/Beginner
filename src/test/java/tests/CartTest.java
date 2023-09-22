@@ -20,7 +20,9 @@ public class CartTest extends AbstractBaseTest {
     private static final String SIZE = "2.5";
     private static final String PRICE = "75.00";
     private static final String CART_SIZE = "2.5";
+    private static final String EDIT_CART_SIZE = "3";
     private static final String ORDER_ITEM_DISPLAY = "OrderItemDisplay";
+    private static final String EDITED_PRODUCT = "Update";
 
     SoftAssert softAssert;
 
@@ -60,6 +62,20 @@ public class CartTest extends AbstractBaseTest {
 
         softAssert.assertTrue(driver.getCurrentUrl().contains(ORDER_ITEM_DISPLAY));
         softAssert.assertTrue(cartPage.IsThereAreNoItemsInYourCartVisibleTitle());
+        softAssert.assertAll();
+    }
+
+    @Test(description = "Edit product in cart")
+    public void editProductInCart(){
+        preconditions();
+        current_price = productPage.getInfoAboutProductsOnProductPage(SIZE);
+        productPage.proceedToCheckout();
+        cartPage.editItem();
+        productPage.selectSizeDropdown();
+        cartPage.selectEditSize(EDIT_CART_SIZE);
+        cartPage.editedShoes(EDITED_PRODUCT);
+
+        softAssert.assertFalse(current_price.get(0).equals(EDIT_CART_SIZE));
         softAssert.assertAll();
     }
 }

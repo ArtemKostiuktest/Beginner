@@ -18,26 +18,45 @@ public class CartPage extends BasePage {
     private final String REMOVE_ITEM = "//div[@class='checkout-item-detail-edit item-detail-edit']//a[@data-action='delete']";
     private final String CHECK_CART_ITEM = "//span[text()='THERE ARE NO ITEMS IN YOUR CART']";
     private final String AFTER_DELETE_MESSAGE = "THERE ARE NO ITEMS IN YOUR CART";
+    private final String EDIT_ITEM = "//div[@class='checkout-item-detail-edit item-detail-edit']//a[@data-open='modal']";
+    protected final String EDIT_SIZE_SHOES = "//div[@value='%s']";
     protected final String CHECKOUT_BUTTON = "//a[@class='button primary btn-checkout-js ']";
+    protected final String UPDATE_BUTTON = "//button[contains(text(),'%s')]";
 
+
+    public void editedShoes(String editedProduct){
+        waitUntilElementToBeClickable(format(UPDATE_BUTTON,editedProduct)).click();
+    }
 
     public String selectPriceShoesFieldCart(String price) {
         return format(PRICE_SHOES_FIELD_CART, price);
     }
 
-    public String selectSizeShoesFieldCart(String cart_size){
-        return format(SIZE_SHOES_FIELD_CART,cart_size);
+    public String selectSizeShoesFieldCart(String cart_size) {
+        return format(SIZE_SHOES_FIELD_CART, cart_size);
+    }
+
+    public String selectEditSizeShoesFieldCart(String edit_cart_size) {
+        return format(EDIT_SIZE_SHOES, edit_cart_size);
+    }
+
+    public void selectEditSize(String size) {
+        waitUntilElementToBeClickable(selectEditSizeShoesFieldCart(size)).click();
     }
 
     public void removeItem() {
         waitUntilElementToBeClickable(REMOVE_ITEM).click();
     }
 
+    public void editItem() {
+        waitUntilElementToBeClickable(EDIT_ITEM).click();
+    }
+
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
-    public List<String> getInfoAboutProductOnCart(String cart_size,String price) {
+    public List<String> getInfoAboutProductOnCart(String cart_size, String price) {
 
         List<String> infoAboutShoesOnCart = new ArrayList<>();
 
@@ -52,15 +71,17 @@ public class CartPage extends BasePage {
 
         return infoAboutShoesOnCart;
     }
-    public boolean IsThereAreNoItemsInYourCartVisibleTitle(){
+
+    public boolean IsThereAreNoItemsInYourCartVisibleTitle() {
         return driver.findElement(By.xpath(CHECK_CART_ITEM))
                 .getText().contains(AFTER_DELETE_MESSAGE);
     }
 
-    public String getProductTitle(){
+    public String getProductTitle() {
         return waitUntilElementIsPresent(NAME_SHOES_FIELD_CART).getText().toLowerCase();
     }
-    public void checkoutSecurely(){
+
+    public void checkoutSecurely() {
         waitUntilElementToBeClickable(CHECKOUT_BUTTON).click();
     }
 }
