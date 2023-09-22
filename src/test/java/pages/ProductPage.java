@@ -20,7 +20,7 @@ public class ProductPage extends BasePage {
     protected final String SIZE_SHOES_FIELD = "//option[@value = '%s']";
     protected final String PROCEED_TO_CHECKOUT = "//div[contains(@class,'slide')]//a[contains(text(), 'Proceed')]";
     protected final String SELECT_SIZE_BUTTON = "//div[@class='product-content-form-size-step-dropdown-container custom-dropdown-container']";
-    private final String SHOES_TITLE= "//h1[@class='product-info-js']";
+    private final String SHOES_TITLE = "//h1[@class='product-info-js']";
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -42,16 +42,16 @@ public class ProductPage extends BasePage {
         return format(SELECT_EXACT_SIZE, size);
     }
 
+    public void selectSize(String size) {
+        waitUntilElementToBeClickable(selectExactSize(size)).click();
+    }
+
     public String selectShoesSize(String size) {
         return format(SIZE_SHOES_FIELD, size);
     }
 
     public void selectSizeDropdown() {
         waitUntilElementToBeClickable(DROPDOWN_SELECT_SIZE).click();
-    }
-
-    public void selectSize(String size) {
-        waitUntilElementToBeClickable(selectExactSize(size)).click();
     }
 
     public void addToCart() {
