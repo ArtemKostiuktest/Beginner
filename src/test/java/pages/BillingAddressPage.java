@@ -9,19 +9,22 @@ import static java.lang.String.format;
 
 public class BillingAddressPage extends BasePage {
 
-    protected final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
-    protected final String FIRST_NAME = "//input[@id='first-name']";
-    protected final String LAST_NAME = "//input[@id='last-name']";
-    protected final String INSERT_ADDRESS = "//input[@id='address-1']";
-    protected final String PHONE_NUMBER = "//input[@id='phone-1']";
-    protected final String EMAIL = "//input[@id='email-1']";
-    protected final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
-    protected final String CITY_NAME = "//input[@id='city-name']";
-    protected final String POST_CODE = "//input[@id='zipcode']";
-    protected final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
-    protected final String ACTUAL_DATA = "//div[@id='wp-address-display']";
-    protected final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
-    protected final String CART_NUMBER = "//input[@id='cardNumber']";
+    private final String SELECT_UKRAINE_COUNTRY = "//select[@id='country']//option[@value='%s']";
+    private final String FIRST_NAME = "//input[@id='first-name']";
+    private final String LAST_NAME = "//input[@id='last-name']";
+    private final String INSERT_ADDRESS = "//input[@id='address-1']";
+    private final String PHONE_NUMBER = "//input[@id='phone-1']";
+    private final String EMAIL = "//input[@id='email-1']";
+    private final String CONFIRM_ADDRESS = "//a[@id='confirmAddress']";
+    private final String CITY_NAME = "//input[@id='city-name']";
+    private final String POST_CODE = "//input[@id='zipcode']";
+    private final String ACTUAL_PRICE = "//dd[@id='amount-after-giftcards-apply-summary']";
+    private final String ACTUAL_DATA = "//div[@id='wp-address-display']";
+    private final String PAYMENT_IFRAME = "//iframe[@id='wp-cl-WPCARDS-iframe-iframe']";
+    private final String CART_NUMBER = "//input[@id='cardNumber']";
+    private final String ACCEPT_TERMS_CHECKBOX = "//input[@id='wp-CheckboxConfirmTermsAndConditions']";
+    private final String PROCEED_TO_PAYMENT = "//a[@class='button primary expand btn-shipping-address-js']";
+
     public static int finalPrice;
 
     public BillingAddressPage(WebDriver driver) {
@@ -80,5 +83,13 @@ public class BillingAddressPage extends BasePage {
 
     public void setPostCode(String postCode) {
         waitUntilVisibilityOfElement(POST_CODE).sendKeys(postCode);
+    }
+
+    public void acceptTerms() {
+        waitUntilElementToBeClickable(ACCEPT_TERMS_CHECKBOX).click();
+    }
+
+    public void proceedPayment() {
+        waitUntilElementToBeClickable(PROCEED_TO_PAYMENT).click();
     }
 }

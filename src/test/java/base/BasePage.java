@@ -84,6 +84,10 @@ public class BasePage {
         return driver.getCurrentUrl().contains(urlPath);
     }
 
+    public boolean isElementEnabled(String locator) {
+        return driver.findElement(By.xpath(locator)).isEnabled();
+    }
+
     public boolean isElementDisplayed(WebDriver driver, String locator) {
         return driver.findElement(By.xpath(locator)).isDisplayed();
     }
