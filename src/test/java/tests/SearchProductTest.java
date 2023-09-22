@@ -101,7 +101,7 @@ public class SearchProductTest extends AbstractBaseTest {
         soft.assertAll();
     }
 
-    @Test
+    @Test(description = "Search with invalid query")
     public void searchWithInvalidQuery() {
         HeaderFragment headerFragment = new HeaderFragment(driver);
         SoftAssertions soft = new SoftAssertions();
