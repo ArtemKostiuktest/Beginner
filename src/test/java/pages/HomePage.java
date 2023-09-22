@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends BasePage {
 
     private final String ALLOW_ALL_COOKIE_BUTTON = "//button[@id='onetrust-accept-btn-handler']";
-    protected final String SHOP_NOW_BUTTON = "//a[contains(@href,'CTA_ShopNow.HP_Hero')]";
+    private final String SHOP_NOW_BUTTON = "//a[contains(@href,'CTA_ShopNow.HP_Hero')]";
 
     public HomePage(WebDriver driver) {
         super(driver);
