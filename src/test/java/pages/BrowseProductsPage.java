@@ -30,7 +30,6 @@ public class BrowseProductsPage extends BasePage {
     private final String FILTER_OPTION_COUNTER = "//button/span[contains(text(),'%s')]/span";
     private final String SHOES_PICK = "//figure[@class='product-block-figure']";
     private final String LOAD_MORE_BUTTON = "//a[contains(@class,'load-more')]";
-    private final String SIGN_UP_EMAIL_FIELD = "//input[@id='newsletterInputField']";
     private final String NOT_FOUND_OPTION = "//div[@class='catalog-results catalog-results-js']";
 
     public BrowseProductsPage(WebDriver driver) {
