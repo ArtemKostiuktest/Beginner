@@ -18,6 +18,7 @@ public class SearchProductTest extends AbstractBaseTest {
     private final int numberOfProduct = 1;
     private final String shoesSize = "2.5";
     private final String invalidQuery = "*";
+    private final String caseInsensitiveQuery = "SK8-Hi";
     private String genderFilterText;
     private String allBillingInfo;
 
@@ -110,7 +111,18 @@ public class SearchProductTest extends AbstractBaseTest {
         BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
 
         headerFragment.fillBaseSearchField(invalidQuery);
-        soft.assertThat(browseProductsPage.foundProducts());
 
+        soft.assertThat(browseProductsPage.foundProducts());
+    }
+
+    @Test
+    public void searchUsingCaseInsensitiveQuery() {
+        HeaderFragment headerFragment = new HeaderFragment(driver);
+        SoftAssertions soft = new SoftAssertions();
+        BrowseProductsPage browseProductsPage = new BrowseProductsPage(driver);
+
+        headerFragment.fillBaseSearchField(caseInsensitiveQuery);
+
+        soft.assertThat(browseProductsPage.selectFirstTitle(numberOfProduct)).contains(caseInsensitiveQuery.toLowerCase());
     }
 }
