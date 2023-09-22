@@ -81,7 +81,6 @@ public class SearchProductTest extends AbstractBaseTest {
         soft.assertThat(cartPage.getProductTitle()).contains(nameOfSearchProducts.toLowerCase());
         cartPage.checkoutSecurely();
 
-
         billingAddressPage.setFirstName(USER_FIRST_NAME);
         billingAddressPage.setLastName(USER_LAST_NAME);
         billingAddressPage.setAddress(ADDRESS);
