@@ -111,7 +111,6 @@ public class SearchProductTest extends AbstractBaseTest {
         headerFragment.fillBaseSearchField(invalidQuery);
 
         soft.assertThat(browseProductsPage.foundProducts());
-
     }
 
     @Test
@@ -123,6 +122,5 @@ public class SearchProductTest extends AbstractBaseTest {
         headerFragment.fillBaseSearchField(caseInsensitiveQuery);
 
         soft.assertThat(browseProductsPage.selectFirstTitle(numberOfProduct)).contains(caseInsensitiveQuery.toLowerCase());
-
     }
 }
