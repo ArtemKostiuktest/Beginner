@@ -12,12 +12,19 @@ import static java.lang.String.format;
 
 public class CartPage extends BasePage {
 
+<<<<<<< HEAD
     private final String NAME_SHOES_FIELD_CART = "//h3[@class='item-detail-info-name item-name-js']";
     private final String PRICE_SHOES_FIELD_CART = "//dd[contains(text(),'%s')]";
     private final String SIZE_SHOES_FIELD_CART = "//dd[contains(text(),'%s')]";
     private final String REMOVE_ITEM = "//div[@class='checkout-item-detail-edit item-detail-edit']//a[@data-action='delete']";
     private final String CHECK_CART_ITEM = "//span[text()='THERE ARE NO ITEMS IN YOUR CART']";
     private final String AFTER_DELETE_MESSAGE = "THERE ARE NO ITEMS IN YOUR CART";
+=======
+    protected final String NAME_SHOES_FIELD_CART = "//h3[@class='item-detail-info-name item-name-js']";
+    protected final String PRICE_SHOES_FIELD_CART = "//dd[contains(text(),'%s')]";
+    protected final String SIZE_SHOES_FIELD_CART = "//dd[contains(text(),'%s')]";
+    protected final String CHECKOUT_BUTTON = "//a[@class='button primary btn-checkout-js ']";
+>>>>>>> 9c494a01f03c0775872d35e9ed17b35c875d4bbf
 
     public String selectPriceShoesFieldCart(String price) {
         return format(PRICE_SHOES_FIELD_CART, price);
@@ -50,9 +57,19 @@ public class CartPage extends BasePage {
 
         return infoAboutShoesOnCart;
     }
+<<<<<<< HEAD
     public boolean IsThereAreNoItemsInYourCartVisibleTitle(){
         return driver.findElement(By.xpath(CHECK_CART_ITEM))
                 .getText().contains(AFTER_DELETE_MESSAGE);
     }
 
+=======
+
+    public String getProductTitle(){
+        return waitUntilElementIsPresent(NAME_SHOES_FIELD_CART).getText().toLowerCase();
+    }
+    public void checkoutSecurely(){
+        waitUntilElementToBeClickable(CHECKOUT_BUTTON).click();
+    }
+>>>>>>> 9c494a01f03c0775872d35e9ed17b35c875d4bbf
 }

@@ -27,7 +27,10 @@ public class BrowseProductsPage extends BasePage {
     private final String PRODUST_PRICES = "//span[contains(@class,'offer')]";
     private final String SPECIFIC_PRICE = "(//span[contains(@class,'offer')])[%s]";
     private final String FILTER_OPTION = "//button/span[contains(text(),'%s')]";
-    protected final String SHOES_PICK = "//figure[@class='product-block-figure']";
+    private final String FILTER_OPTION_COUNTER = "//button/span[contains(text(),'%s')]/span";
+    private final String SHOES_PICK = "//figure[@class='product-block-figure']";
+    private final String LOAD_MORE_BUTTON = "//a[contains(@class,'load-more')]";
+    private final String SIGN_UP_EMAIL_FIELD = "//input[@id='newsletterInputField']";
 
     public BrowseProductsPage(WebDriver driver) {
         super(driver);
@@ -35,6 +38,10 @@ public class BrowseProductsPage extends BasePage {
 
     private String filterBy(String filter) {
         return format(FILTER_OPTION, filter);
+    }
+
+    private String filterCounter(String filter) {
+        return format(FILTER_OPTION_COUNTER, filter);
     }
 
     private String sortBy(String sortValue) {
@@ -45,7 +52,7 @@ public class BrowseProductsPage extends BasePage {
         return format(SIZE, size);
     }
 
-    private String specificShoe(int shoeNumber) {
+    private String specificProduct(int shoeNumber) {
         return format(SPECIFIC_PRODUCT_TITLE, shoeNumber);
     }
 
@@ -59,6 +66,10 @@ public class BrowseProductsPage extends BasePage {
 
     public void selectFilterBy(String filterValue) {
         waitUntilElementToBeClickable(filterBy(filterValue)).click();
+    }
+
+    public int getFilterCounter(String filterValue) {
+        return Integer.parseInt(waitUntilVisibilityOfElement(filterCounter(filterValue)).getText().replaceAll("[^0-9]", ""));
     }
 
     public void selectSizeInFilter(String size) {
@@ -86,8 +97,8 @@ public class BrowseProductsPage extends BasePage {
     }
 
     public void selectSpecificProduct(int productNumber) {
-        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificShoe(productNumber))), driver);
-        waitUntilElementToBeClickable(specificShoe(productNumber)).click();
+        scrollToElementInCenterOfBlock(driver.findElement(By.xpath(specificProduct(productNumber))), driver);
+        waitUntilElementToBeClickable(specificProduct(productNumber)).click();
     }
 
     public List<String> getTitlesNames() {
@@ -122,7 +133,7 @@ public class BrowseProductsPage extends BasePage {
     }
 
     private Double getSpecificPrice(int i) {
-        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE,i)).getAttribute("data-amount"));
+        return Double.parseDouble(waitUntilVisibilityOfElementLocated(format(SPECIFIC_PRICE, i)).getAttribute("data-amount"));
     }
 
     public void waitLoading() {
@@ -133,7 +144,28 @@ public class BrowseProductsPage extends BasePage {
     public String getGenderField(String gender) {
         return waitUntilElementToBeClickable(selectFilter(gender)).getText().replaceAll("[^a-zA-Z]", "").toLowerCase();
     }
+
     public void selectPage() {
         waitUntilElementToBeClickable(SHOES_PICK).click();
+    }
+
+    public String selectFirstTitle(int shoeNumber) {
+        return waitUntilElementToBeClickable(specificProduct(shoeNumber)).getText().toLowerCase();
+    }
+
+    public void loadMore() {
+        waitUntilElementToBeClickable(LOAD_MORE_BUTTON).click();
+    }
+
+    public WebElement loadMoreElement() {
+        return waitUntilElementToBeClickable(LOAD_MORE_BUTTON);
+    }
+
+    public void loadAll() {
+        while (isElementDisplayed(driver, LOAD_MORE_BUTTON)) {
+            scrollToElementInCenterOfBlock(loadMoreElement(), driver);
+            loadMore();
+            waitLoading();
+        }
     }
 }
